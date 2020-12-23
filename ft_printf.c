@@ -6,7 +6,7 @@
 /*   By: gmayweat <gmayweat@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/17 18:31:14 by gmayweat          #+#    #+#             */
-/*   Updated: 2020/12/22 23:06:41 by gmayweat         ###   ########.fr       */
+/*   Updated: 2020/12/24 01:47:48 by gmayweat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,7 @@ static int		ft_symb(const char *s, size_t *i, va_list args)
 	else if (s[*i] == 'd' || s[*i] == 'i')
 		n = ft_putint(sub, args);
 	// else if (s[i])
+
 	free(sub);
 	return (n);
 }

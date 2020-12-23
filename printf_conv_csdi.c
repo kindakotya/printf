@@ -6,7 +6,7 @@
 /*   By: gmayweat <gmayweat@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/18 23:30:14 by gmayweat          #+#    #+#             */
-/*   Updated: 2020/12/23 00:06:12 by gmayweat         ###   ########.fr       */
+/*   Updated: 2020/12/24 01:00:47 by gmayweat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ ssize_t		ft_putstr(const char *sub, va_list args)
 	if (sub[0])
 		width = ft_flagcheck(sub, args, &acc);
 	s = va_arg(args, char*);
-	if (acc < 0 || acc > ft_strlen(s))
+	if (acc > ft_strlen(s))
 		acc = ft_strlen(s);
 	if (sub[0] != '-')
 		n += ft_printnchars(width - acc, ' ');
@@ -67,21 +67,20 @@ ssize_t		ft_putint(const char *sub, va_list args)
 	size_t 	width;
 	size_t 	acc;
 	char 		*s;
-	unsigned int u;
 
 	width = 0;
 	acc = 0;
 	if (sub[0])
 		width = ft_flagcheck(sub, args, &acc);
-	u = va_arg(args, unsigned int);
-	if (u)
-		s = ft_itoa(u);
-	else
-		s = ft_itoa(va_arg(args, int));
-	if (sub[0])
-		n = ft_printnbr(sub, s, width, acc);
-	else
+	width = (!width && acc) ? acc : width;
+	s = ft_itoa(va_arg(args, int));
+	if (!sub[0])
 		n = write(1, s, ft_strlen(s));
+	else if (s[0] != '-')
+		n = ft_printposnbr(sub, s, width, acc);
+	else
+		n = ft_printnegnbr(sub, s, width, acc);
 	free(s);
 	return (n);
 }
+

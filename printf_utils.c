@@ -6,7 +6,7 @@
 /*   By: gmayweat <gmayweat@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/21 21:39:29 by gmayweat          #+#    #+#             */
-/*   Updated: 2020/12/22 23:56:22 by gmayweat         ###   ########.fr       */
+/*   Updated: 2020/12/23 22:39:23 by gmayweat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,25 +45,43 @@ size_t	ft_flagcheck(const char *sub, va_list args, size_t *acc)
 	return (width);
 }
 
-ssize_t	ft_printnbr(const char *sub, const char *s, size_t width, size_t acc)
+ssize_t	ft_printposnbr(const char *sub, const char *s, size_t width, size_t acc)
 {
 	ssize_t n;
-	size_t len;
 
 	n = 0;
-	len = ft_strlen(s);
-	acc = (acc) ? acc : len;
-	len = (s[0] == '-') ? len - 1 : len;
+	if (!acc)
+		acc = ft_strlen(s);
 	if (sub[0] != '-' && sub[0] != '0')
 		n += ft_printnchars(width - acc, ' ');
-	if (s[0] == '-')
-		n += write(1, "-", 1);
 	if (sub[0] == '0' && acc == ft_strlen(s))
 		n += ft_printnchars(width - acc, '0');
 	else
 		n += ft_printnchars(acc - ft_strlen(s), '0');
-	n += write(1, ++s, len);
+	n += write(1, s, ft_strlen(s));
 	if (sub[0] == '-')
 		n += ft_printnchars(width - acc, ' ');
+	return (n);
+}
+
+ssize_t	ft_printnegnbr(const char *sub, const char *s, size_t width, size_t acc)
+{
+	ssize_t n;
+
+	n = 0;
+	if (sub[0] != '-' && sub[0] != '0' && acc)
+		n += ft_printnchars(width - acc - 1, ' ');
+	else if (sub[0] != '-' && sub[0] != '0' && !acc)
+		n += ft_printnchars(width - ft_strlen(s), ' ');
+	n += write(1, "-", 1);
+	if (sub[0] == '0' && !acc)
+		n += ft_printnchars(width - ft_strlen(s), '0');
+	else
+		n += ft_printnchars(acc - ft_strlen(s) + 1, '0');
+	n += write(1, s + 1, ft_strlen(s) - 1);
+	if (sub[0] == '-' && acc)
+		n += ft_printnchars(width - acc - 1, ' ');
+	else if (sub[0] == '-' && !acc)
+		n += ft_printnchars(width - ft_strlen(s), ' ');
 	return (n);
 }
