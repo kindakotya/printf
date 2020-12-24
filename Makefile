@@ -6,7 +6,7 @@
 #    By: gmayweat <gmayweat@42.fr>                  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/12/17 18:31:55 by gmayweat          #+#    #+#              #
-#    Updated: 2020/12/24 02:08:10 by gmayweat         ###   ########.fr        #
+#    Updated: 2020/12/24 21:16:32 by gmayweat         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,32 +20,26 @@ HEAD = libftprintf.h
 
 OBJS = $(SRCS:.c=.o)
 
-MAKEFILES = ./libft/Makefile
+.Phony: all $(NAME) %.o clean fclean re libft.a
 
-.Phony: all $(NAME) %.o clean fclean re
+all: $(NAME) libft.a
 
-
-
-all: $(NAME)
-
-$(NAME): $(MAKEFILES) $(OBJS) main.c
+$(NAME): $(OBJS) main.c
 	ar rc $(NAME) $(OBJS)
 	clang -g -Wall -Werror -Wextra main.c -o printf -L. libftprintf.a ./libft/libft.a
 
-$(MAKEFILES): force
-	make -f $(MAKEFILES)
-
-force: ;
+libft.a:
+	$(MAKE) -C libft
 
 %.o : %.c $(HEAD)
 	clang -g -Wall -Wextra -Werror -c $<
 
-.DEFAULT:clean:
-	make clean -f $(MAKEFILES)
+clean:
+	$(MAKE) -C libft clean
 	rm -rf $(OBJS)
 
-fclean: clean
-	make fclean -f $(MAKEFILES)
-	rm -rf $(NAME) printf
+fclean:
+	$(MAKE) -C libft fclean
+	rm -rf $(OBJS) $(NAME) printf
 
 re: fclean $(NAME)
