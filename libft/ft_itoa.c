@@ -6,7 +6,7 @@
 /*   By: gmayweat <gmayweat@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/11 22:15:37 by gmayweat          #+#    #+#             */
-/*   Updated: 2020/12/24 02:09:46 by gmayweat         ###   ########.fr       */
+/*   Updated: 2020/12/25 10:31:16 by gmayweat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ char		*ft_itoa(long int n)
 
 	num = ft_numlen(n);
 	str = malloc((num + 1) * sizeof(char));
-	if (str == NULL)
+	if (!str)
 		return (NULL);
 	if (n < 0)
 	{

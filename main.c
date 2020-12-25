@@ -6,12 +6,13 @@
 /*   By: gmayweat <gmayweat@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/17 18:31:27 by gmayweat          #+#    #+#             */
-/*   Updated: 2020/12/24 01:47:35 by gmayweat         ###   ########.fr       */
+/*   Updated: 2020/12/25 16:28:28 by gmayweat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libftprintf.h"
 #include <stdio.h>
+#include <string.h>
 
 int main()
 {
@@ -24,9 +25,9 @@ int main()
 
 int num = -4;
 
-	ft_printf("1____________\n");
+	ft_printf("1____________\n\n");
 	ft_printf("my = %dc\n", -2147483648);
-	//printf("pr = %dc\n", -2147483648);
+	//printf("pr = %dc\n\n", -2147483648);
 
 	printf("2_____%%5d_____\n\n");
 	ft_printf("my = %5dc\n", num);
@@ -59,6 +60,10 @@ int num = -4;
 	printf("9_____%%.4d______\n\n");
 	ft_printf("my = %.4dc\n", num);
 	printf("pr = %.4dc\n\n", num);
+
+	printf("10_____%%x______\n\n");
+	ft_printf("my = %Xc\n", 87346786);
+	printf("pr = %Xc\n\n", 87346786);
 	// i = 0;
 	// while (str[i])
 	// 	++i;

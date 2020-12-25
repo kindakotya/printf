@@ -6,7 +6,7 @@
 /*   By: gmayweat <gmayweat@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/04 17:23:01 by gmayweat          #+#    #+#             */
-/*   Updated: 2020/11/24 18:16:27 by gmayweat         ###   ########.fr       */
+/*   Updated: 2020/12/25 10:41:03 by gmayweat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	*ft_memccpy(void *dest, const void *src, int c, size_t n)
 	{
 		((unsigned char*)dest)[i] = ((unsigned char*)src)[i];
 		if (((unsigned char*)src)[i] == (unsigned char)c)
-			return (&(((unsigned char*)dest)[++i]));
+			return (dest + 1 + i);
 		++i;
 	}
 	return (NULL);

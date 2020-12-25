@@ -6,7 +6,7 @@
 /*   By: gmayweat <gmayweat@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/06 16:30:47 by gmayweat          #+#    #+#             */
-/*   Updated: 2020/11/24 18:14:29 by gmayweat         ###   ########.fr       */
+/*   Updated: 2020/12/25 10:50:33 by gmayweat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,17 +16,13 @@ char	*ft_strchr(const char *s, int c)
 {
 	int i;
 
-	i = 0;
 	if (c == '\0')
-	{
-		while (s[i])
-			++i;
-		return (&(((char*)s)[i]));
-	}
+		return ((char*)(s + ft_strlen(s)));
+	i = 0;
 	while (s[i])
 	{
 		if (s[i] == c)
-			return (&(((char*)s)[i]));
+			return ((char*)(s + i));
 		++i;
 	}
 	return (NULL);

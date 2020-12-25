@@ -6,7 +6,7 @@
 /*   By: gmayweat <gmayweat@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/08 22:50:17 by gmayweat          #+#    #+#             */
-/*   Updated: 2020/11/24 17:57:43 by gmayweat         ###   ########.fr       */
+/*   Updated: 2020/12/25 10:31:01 by gmayweat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	*ft_calloc(size_t nmemb, size_t size)
 
 	i = 0;
 	mem = malloc(nmemb * size);
-	if (mem == NULL)
+	if (!mem)
 		return (NULL);
 	while (i < nmemb * size)
 		((unsigned char *)mem)[i++] = '\0';

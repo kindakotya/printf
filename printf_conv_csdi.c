@@ -6,7 +6,7 @@
 /*   By: gmayweat <gmayweat@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/18 23:30:14 by gmayweat          #+#    #+#             */
-/*   Updated: 2020/12/24 01:00:47 by gmayweat         ###   ########.fr       */
+/*   Updated: 2020/12/25 16:08:05 by gmayweat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,19 +61,24 @@ ssize_t		ft_putstr(const char *sub, va_list args)
 	return (n);
 }
 
-ssize_t		ft_putint(const char *sub, va_list args)
+ssize_t		ft_putint(const char *sub, va_list args, char conv)
 {
 	ssize_t n;
 	size_t 	width;
 	size_t 	acc;
-	char 		*s;
+	char 	*s;
 
 	width = 0;
 	acc = 0;
 	if (sub[0])
 		width = ft_flagcheck(sub, args, &acc);
-	width = (!width && acc) ? acc : width;
-	s = ft_itoa(va_arg(args, int));
+	printf("meow");
+	if (conv == 'd' || conv == 'i')
+		s = ft_itoa(va_arg(args, int));
+	else if (conv == 'x' || conv == 'X')
+		s = ft_dextohex(va_arg(args, long int), conv);
+	else
+		s = ft_itoa(va_arg(args, unsigned int));
 	if (!sub[0])
 		n = write(1, s, ft_strlen(s));
 	else if (s[0] != '-')

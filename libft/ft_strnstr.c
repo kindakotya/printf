@@ -6,7 +6,7 @@
 /*   By: gmayweat <gmayweat@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/06 23:05:39 by gmayweat          #+#    #+#             */
-/*   Updated: 2020/11/27 07:04:58 by gmayweat         ###   ########.fr       */
+/*   Updated: 2020/12/25 10:47:07 by gmayweat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ char	*ft_strnstr(const char *big, const char *little, size_t len)
 	i = 0;
 	j = 0;
 	if (!little[0])
-		return ((char *)big);
+		return ((char*)big);
 	while (big[i] && i < len)
 	{
 		j = 0;
@@ -28,7 +28,7 @@ char	*ft_strnstr(const char *big, const char *little, size_t len)
 				big[i + j] && little[j] && i + j < len)
 			j++;
 		if (!little[j])
-			return ((char *)(big + i));
+			return ((char*)(big + i));
 		i++;
 	}
 	return (NULL);

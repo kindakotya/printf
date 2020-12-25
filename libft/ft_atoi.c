@@ -6,7 +6,7 @@
 /*   By: gmayweat <gmayweat@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/08 19:13:44 by gmayweat          #+#    #+#             */
-/*   Updated: 2020/12/18 23:04:53 by gmayweat         ###   ########.fr       */
+/*   Updated: 2020/12/25 10:17:04 by gmayweat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,12 +21,17 @@ int		ft_atoi(const char *str)
 		|| str[spp] == '\r' || str[spp] == '\t' || str[spp] == '\v')
 		++spp;
 	num = 0;
-	i = (str[spp] == '-' || str[spp] == '+') ? spp + 1 : spp;
+	if (str[spp] == '-' || str[spp] == '+')
+		i = spp + 1;
+	else
+		i = spp;
 	while (str[i] >= '0' && str[i] <= '9')
 		num = num * 10 + str[i++] - '0';
 	if (num > 9223372036854775807 && str[spp] == '-')
 		return (0);
 	if (num > 9223372036854775807)
 		return (-1);
-	return ((str[spp] == '-') ? (int)(-num) : (int)num);
+	if (str[spp] == '-')
+		return ((int)(-num));
+	return ((int)num);
 }

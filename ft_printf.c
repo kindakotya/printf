@@ -6,7 +6,7 @@
 /*   By: gmayweat <gmayweat@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/17 18:31:14 by gmayweat          #+#    #+#             */
-/*   Updated: 2020/12/24 01:47:48 by gmayweat         ###   ########.fr       */
+/*   Updated: 2020/12/25 16:03:58 by gmayweat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,7 @@
 static int	ft_stop(const char *s, size_t i)
 {
 	while (s[i] != '%' && s[i])
-	{
 		write(1, &(s[i++]), 1);
-	}
 	return (i);
 }
 
@@ -29,25 +27,34 @@ static int		ft_isconv(int c)
 	return (1);
 }
 
-static int		ft_symb(const char *s, size_t *i, va_list args)
+static ssize_t		ft_callconv(char *sub, va_list args, char conv)
+{
+	if (conv == 'c')
+		return(ft_putchar(sub, args));
+	else if (conv == 's')
+		return(ft_putstr(sub, args));
+	else if (conv == 'd' || conv == 'i')
+		return (ft_putint(sub, args, conv));
+	else if (conv == 'u')
+		return (ft_putint(sub, args, conv));
+	else if (conv == 'x' || conv == 'X')
+		return (ft_putint(sub, args, conv));
+	return (0);
+}
+
+static ssize_t		ft_symb(const char *s, size_t *i, va_list args)
 {
 	char *sub;
 	ssize_t n;
+	size_t start;
 
-	n = *i;
+	start = *i;
 	while (!(ft_isconv(s[*i])) && s[*i])
 		++(*i);
 	if (s[*i] == '%')
 		return (write(1, "%", 1));
-	sub = ft_substr(s, n, *i - n);
-	if (s[*i] == 'c')
-		n = ft_putchar(sub, args);
-	else if (s[*i] == 's')
-		n = ft_putstr(sub, args);
-	else if (s[*i] == 'd' || s[*i] == 'i')
-		n = ft_putint(sub, args);
-	// else if (s[i])
-
+	sub = ft_substr(s, start, *i - start);
+	n = ft_callconv(sub, args, s[*i]);
 	free(sub);
 	return (n);
 }
@@ -57,24 +64,23 @@ int						ft_printf(const char *s, ...)
 	size_t i;
 	va_list args;
 	char *str;
-	int n;
-	int diff;
+	ssize_t n;
+	size_t diff;
 
 	if (!s)
 		return (0);
 	str = ft_strdup(s);
 	va_start(args, s);
 	i = 0;
-	diff = 0;
 	n = 0;
 	while (str[i])
 	{
+		diff = i;
 		i = ft_stop(str, i) + 1;
 		n += i - diff;
 		if (str[i])
 			n += ft_symb(str, &i, args) + 1;
 		++i;
-		diff = i;
 	}
 	free(str);
 	va_end(args);

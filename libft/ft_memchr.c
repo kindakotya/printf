@@ -6,7 +6,7 @@
 /*   By: gmayweat <gmayweat@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/06 09:59:07 by gmayweat          #+#    #+#             */
-/*   Updated: 2020/11/25 19:24:59 by gmayweat         ###   ########.fr       */
+/*   Updated: 2020/12/25 10:41:08 by gmayweat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	*ft_memchr(const void *s, int c, size_t n)
 	while (i < n)
 	{
 		if (((unsigned char*)s)[i] == (unsigned char)c)
-			return (&(((unsigned char*)s)[i]));
+			return ((void*)(s + i));
 		++i;
 	}
 	return (NULL);
