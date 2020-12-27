@@ -6,7 +6,7 @@
 #    By: gmayweat <gmayweat@42.fr>                  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/12/17 18:31:55 by gmayweat          #+#    #+#              #
-#    Updated: 2020/12/25 14:48:39 by gmayweat         ###   ########.fr        #
+#    Updated: 2020/12/28 01:11:27 by gmayweat         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,26 +23,28 @@ HEAD = libftprintf.h
 
 OBJS = $(SRCS:.c=.o)
 
+OBJSPATH = $(addprefix objs/, $(OBJS))
+
 .Phony: all $(NAME) %.o clean fclean re libft.a
 
 all: libft.a $(NAME)
 
 $(NAME): $(LIBFT) $(OBJS) main.c
-	ar rc $(NAME) $(OBJS)
+	ar rc $(NAME) $(OBJSPATH)
 	clang -g -Wall -Werror -Wextra main.c -o printf -L. libftprintf.a ./libft/libft.a
 
 libft.a:
 	$(MAKE) -C libft
 
 %.o : %.c $(HEAD)
-	clang -g -Wall -Wextra -Werror -c $<
+	clang -g -Wall -Wextra -Werror -o $(addprefix objs/, $(patsubst %.c, %.o, $<)) -c $<
 
 clean:
 	$(MAKE) -C libft clean
-	rm -rf $(OBJS)
+	rm -rf $(OBJSPATH)
 
 fclean:
 	$(MAKE) -C libft fclean
-	rm -rf $(OBJS) $(NAME) printf
+	rm -rf $(OBJSPATH) $(NAME) printf
 
 re: fclean all

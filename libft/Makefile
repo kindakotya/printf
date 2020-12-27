@@ -6,7 +6,7 @@
 #    By: gmayweat <gmayweat@42.fr>                  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/11/03 09:56:58 by gmayweat          #+#    #+#              #
-#    Updated: 2020/12/25 10:07:06 by gmayweat         ###   ########.fr        #
+#    Updated: 2020/12/28 01:11:01 by gmayweat         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -49,20 +49,22 @@ SRCS = 						ft_memset.c\
 
 OBJS = $(SRCS:.c=.o)
 
+OBJSPATH = $(addprefix objs/, $(OBJS))
+
 .Phony: all $(NAME) clean fclean re
 
 all: $(NAME)
 
 $(NAME): $(OBJS)
-	ar rc $(NAME) $(OBJS)
+	ar rc $(NAME) $(OBJSPATH)
 
 %.o: %.c libft.h
-	clang -g -Wall -Wextra -Werror -c $<
+	clang -g -Wall -Wextra -Werror -o $(addprefix objs/, $(patsubst %.c, %.o, $<)) -c $<
 
 clean:
-	rm -rf ${OBJS}
+	rm -rf $(OBJSPATH)
 
 fclean: clean
-	rm -rf ${NAME}
+	rm -rf $(NAME)
 
 re: fclean all
