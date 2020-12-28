@@ -6,7 +6,7 @@
 #    By: gmayweat <gmayweat@42.fr>                  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/12/17 18:31:55 by gmayweat          #+#    #+#              #
-#    Updated: 2020/12/28 01:11:27 by gmayweat         ###   ########.fr        #
+#    Updated: 2020/12/28 09:29:22 by gmayweat         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,7 +15,7 @@ NAME = libftprintf.a
 LIBFT = libft/libft.a
 
 SRCS =					ft_printf.c\
-						printf_conv_csdi.c\
+						printf_conv.c\
 						printf_utils.c\
 						ft_dextohex.c
 
@@ -24,6 +24,8 @@ HEAD = libftprintf.h
 OBJS = $(SRCS:.c=.o)
 
 OBJSPATH = $(addprefix objs/, $(OBJS))
+
+vpath %.o objs
 
 .Phony: all $(NAME) %.o clean fclean re libft.a
 

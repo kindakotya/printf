@@ -6,7 +6,7 @@
 #    By: gmayweat <gmayweat@42.fr>                  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/11/03 09:56:58 by gmayweat          #+#    #+#              #
-#    Updated: 2020/12/28 01:11:01 by gmayweat         ###   ########.fr        #
+#    Updated: 2020/12/28 09:29:05 by gmayweat         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -50,6 +50,8 @@ SRCS = 						ft_memset.c\
 OBJS = $(SRCS:.c=.o)
 
 OBJSPATH = $(addprefix objs/, $(OBJS))
+
+vpath %.o objs
 
 .Phony: all $(NAME) clean fclean re
 

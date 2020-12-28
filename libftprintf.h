@@ -6,7 +6,7 @@
 /*   By: gmayweat <gmayweat@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/17 18:43:54 by gmayweat          #+#    #+#             */
-/*   Updated: 2020/12/25 16:40:08 by gmayweat         ###   ########.fr       */
+/*   Updated: 2020/12/28 09:43:21 by gmayweat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,17 @@
 
 #define LIBFTPRINTF_H
 
-#include "libft/libft.h"
-#include <unistd.h>
-#include <stdarg.h>
+# include "libft/libft.h"
+# include <unistd.h>
+# include <stdarg.h>
 #include <stdio.h>
+
 int			ft_printf(const char *s, ...);
 ssize_t		ft_putchar(char *sub, va_list args);
 ssize_t		ft_putstr(const char *sub, va_list args);
 ssize_t		ft_putint(const char *sub, va_list args, char conv);
+ssize_t		ft_putuint(const char *sub, va_list args);
+ssize_t		ft_putpoint(va_list args);
 ssize_t		ft_printnchars(size_t n, char c);
 size_t		ft_flagcheck(const char *sub, va_list args, size_t *acc);
 ssize_t		ft_printposnbr(const char *sub, const char *s, size_t width, size_t acc);

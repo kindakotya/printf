@@ -6,7 +6,7 @@
 /*   By: gmayweat <gmayweat@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/25 11:05:02 by gmayweat          #+#    #+#             */
-/*   Updated: 2020/12/25 16:27:39 by gmayweat         ###   ########.fr       */
+/*   Updated: 2020/12/28 11:08:30 by gmayweat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ static size_t	ft_hexlen(long int n)
 	return (nrazr);
 }
 
-static char	ft_puthex(unsigned int n, char conv)
+static char		ft_puthex(unsigned int n, char conv)
 {
 	if (n < 10 )
 		return (n + '0');
@@ -40,10 +40,10 @@ static char	ft_puthex(unsigned int n, char conv)
 		return (n - 10 + 'A');
 }
 
-char	*ft_dextohex(long int n, char conv)
+char			*ft_dextohex(long int n, char conv)
 {
-	size_t nrazr;
-	char *hex;
+	size_t	nrazr;
+	char	*hex;
 
 	nrazr  = ft_hexlen(n);
 
@@ -60,9 +60,7 @@ char	*ft_dextohex(long int n, char conv)
 	{
 		--nrazr;
 		hex[nrazr] = ft_puthex(n % 16, conv);
-//		printf("\nhex[%zu] = %c\n", nrazr, hex[nrazr]);
 		n /= 16;
 	}
-//	printf("\ndex = %s\n", hex);
 	return (hex);
 }

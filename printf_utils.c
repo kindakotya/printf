@@ -6,13 +6,13 @@
 /*   By: gmayweat <gmayweat@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/21 21:39:29 by gmayweat          #+#    #+#             */
-/*   Updated: 2020/12/25 16:40:58 by gmayweat         ###   ########.fr       */
+/*   Updated: 2020/12/28 11:07:58 by gmayweat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libftprintf.h"
 
-ssize_t	ft_printnchars(size_t n, char c)
+ssize_t		ft_printnchars(size_t n, char c)
 {
 	ssize_t i;
 
@@ -25,7 +25,7 @@ ssize_t	ft_printnchars(size_t n, char c)
 	return (i);
 }
 
-size_t	ft_flagcheck(const char *sub, va_list args, size_t *acc)
+size_t		ft_flagcheck(const char *sub, va_list args, size_t *acc)
 {
 	int		i;
 	size_t	width;
@@ -47,7 +47,7 @@ size_t	ft_flagcheck(const char *sub, va_list args, size_t *acc)
 	return (width);
 }
 
-ssize_t	ft_printposnbr(const char *sub, const char *s, size_t width, size_t acc)
+ssize_t		ft_printposnbr(const char *sub, const char *s, size_t width, size_t acc)
 {
 	ssize_t n;
 
@@ -66,7 +66,7 @@ ssize_t	ft_printposnbr(const char *sub, const char *s, size_t width, size_t acc)
 	return (n);
 }
 
-ssize_t	ft_printnegnbr(const char *sub, const char *s, size_t width, size_t acc)
+ssize_t		ft_printnegnbr(const char *sub, const char *s, size_t width, size_t acc)
 {
 	ssize_t n;
 
