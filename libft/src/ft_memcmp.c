@@ -1,21 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putendl_fd.c                                    :+:      :+:    :+:   */
+/*   ft_memcmp.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gmayweat <gmayweat@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/11/21 16:01:42 by gmayweat          #+#    #+#             */
-/*   Updated: 2020/12/25 10:29:28 by gmayweat         ###   ########.fr       */
+/*   Created: 2020/11/06 10:31:34 by gmayweat          #+#    #+#             */
+/*   Updated: 2020/12/29 14:42:42 by gmayweat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../libft.h"
 
-void	ft_putendl_fd(char *s, int fd)
+int		ft_memcmp(const void *s1, const void *s2, size_t n)
 {
-	if (fd < 0 || s == NULL)
-		return ;
-	write(fd, s, ft_strlen(s));
-	write(fd, "\n", 1);
+	size_t i;
+
+	i = 0;
+	while (i < n)
+	{
+		if (((unsigned char*)s1)[i] != ((unsigned char*)s2)[i])
+			return (((unsigned char*)s1)[i] - ((unsigned char*)s2)[i]);
+		++i;
+	}
+	return (0);
 }

@@ -1,32 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strdup.c                                        :+:      :+:    :+:   */
+/*   ft_bzero.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gmayweat <gmayweat@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/11/08 23:05:30 by gmayweat          #+#    #+#             */
-/*   Updated: 2020/12/25 10:41:57 by gmayweat         ###   ########.fr       */
+/*   Created: 2020/11/04 16:10:13 by gmayweat          #+#    #+#             */
+/*   Updated: 2020/12/29 14:42:42 by gmayweat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../libft.h"
 
-char	*ft_strdup(const char *s)
+void	*ft_bzero(void *arr, size_t n)
 {
-	char	*dup;
-	int		i;
+	size_t i;
 
-	dup = (s[0] != '\0') ? malloc(ft_strlen(s) + 1 * sizeof(char)) :
-	malloc(sizeof(char));
-	if (dup == NULL)
-		return (NULL);
 	i = 0;
-	while (s[i])
-	{
-		dup[i] = s[i];
-		++i;
-	}
-	dup[i] = '\0';
-	return (dup);
+	while (i < n)
+		((unsigned char*)arr)[i++] = '\0';
+	return (arr);
 }

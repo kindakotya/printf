@@ -1,29 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlcpy.c                                       :+:      :+:    :+:   */
+/*   ft_putstr_fd.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gmayweat <gmayweat@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/11/06 22:26:12 by gmayweat          #+#    #+#             */
-/*   Updated: 2020/12/25 10:45:46 by gmayweat         ###   ########.fr       */
+/*   Created: 2020/11/21 14:53:00 by gmayweat          #+#    #+#             */
+/*   Updated: 2020/12/29 14:42:42 by gmayweat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../libft.h"
 
-size_t			ft_strlcpy(char *dest, const char *src, size_t size)
+void	ft_putstr_fd(char *s, int fd)
 {
-	size_t i;
-
-	i = 0;
-	if (!size)
-		return (ft_strlen(src));
-	while (src[i] && i < size - 1)
-	{
-		dest[i] = src[i];
-		++i;
-	}
-	dest[i] = '\0';
-	return (ft_strlen(src));
+	if (fd < 0 || !s)
+		return ;
+	write(fd, s, ft_strlen(s));
 }

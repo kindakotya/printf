@@ -6,11 +6,11 @@
 /*   By: gmayweat <gmayweat@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/21 16:10:07 by gmayweat          #+#    #+#             */
-/*   Updated: 2020/12/25 10:29:47 by gmayweat         ###   ########.fr       */
+/*   Updated: 2020/12/29 14:42:42 by gmayweat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../libft.h"
 
 static void	ft_putrec(int n, int fd)
 {

@@ -1,32 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strjoin.c                                       :+:      :+:    :+:   */
+/*   ft_strnstr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gmayweat <gmayweat@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/11/09 10:36:27 by gmayweat          #+#    #+#             */
-/*   Updated: 2020/12/25 10:42:12 by gmayweat         ###   ########.fr       */
+/*   Created: 2020/11/06 23:05:39 by gmayweat          #+#    #+#             */
+/*   Updated: 2020/12/29 14:42:42 by gmayweat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../libft.h"
 
-char	*ft_strjoin(const char *s1, const char *s2)
+char	*ft_strnstr(const char *big, const char *little, size_t len)
 {
-	char	*ss;
-	int		ss_len;
+	size_t	i;
+	size_t	j;
 
-	if (!s1 || !s2)
-		return (NULL);
-	ss_len = ft_strlen(s1) + ft_strlen(s2);
-	ss = (char *)malloc((ss_len + 1) * sizeof(char));
-	if (!ss)
-		return (NULL);
-	while (*s1 != '\0')
-		*ss++ = *s1++;
-	while (*s2 != '\0')
-		*ss++ = *s2++;
-	*ss++ = '\0';
-	return (ss - ss_len - 1);
+	i = 0;
+	j = 0;
+	if (!little[0])
+		return ((char*)big);
+	while (big[i] && i < len)
+	{
+		j = 0;
+		while (big[i + j] == little[j] &&
+				big[i + j] && little[j] && i + j < len)
+			j++;
+		if (!little[j])
+			return ((char*)(big + i));
+		i++;
+	}
+	return (NULL);
 }

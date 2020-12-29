@@ -1,27 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_calloc.c                                        :+:      :+:    :+:   */
+/*   ft_strdup.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gmayweat <gmayweat@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/11/08 22:50:17 by gmayweat          #+#    #+#             */
-/*   Updated: 2020/12/25 10:31:01 by gmayweat         ###   ########.fr       */
+/*   Created: 2020/11/08 23:05:30 by gmayweat          #+#    #+#             */
+/*   Updated: 2020/12/29 14:42:42 by gmayweat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../libft.h"
 
-void	*ft_calloc(size_t nmemb, size_t size)
+char	*ft_strdup(const char *s)
 {
-	size_t	i;
-	void	*mem;
+	char	*dup;
+	int		i;
 
-	i = 0;
-	mem = malloc(nmemb * size);
-	if (!mem)
+	dup = (s[0] != '\0') ? malloc(ft_strlen(s) + 1 * sizeof(char)) :
+	malloc(sizeof(char));
+	if (dup == NULL)
 		return (NULL);
-	while (i < nmemb * size)
-		((unsigned char *)mem)[i++] = '\0';
-	return (mem);
+	i = 0;
+	while (s[i])
+	{
+		dup[i] = s[i];
+		++i;
+	}
+	dup[i] = '\0';
+	return (dup);
 }

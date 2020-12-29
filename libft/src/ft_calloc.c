@@ -1,29 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strncmp.c                                       :+:      :+:    :+:   */
+/*   ft_calloc.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gmayweat <gmayweat@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/11/06 23:43:41 by gmayweat          #+#    #+#             */
-/*   Updated: 2020/12/25 10:46:32 by gmayweat         ###   ########.fr       */
+/*   Created: 2020/11/08 22:50:17 by gmayweat          #+#    #+#             */
+/*   Updated: 2020/12/29 14:42:42 by gmayweat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../libft.h"
 
-int		ft_strncmp(const char *s1, const char *s2, size_t n)
+void	*ft_calloc(size_t nmemb, size_t size)
 {
-	size_t i;
+	size_t	i;
+	void	*mem;
 
-	if (n == 0)
-		return (0);
 	i = 0;
-	while (s1[i] && s2[i])
-	{
-		if (s1[i] != s2[i] || i == n - 1)
-			break ;
-		++i;
-	}
-	return (((unsigned char*)s1)[i] - ((unsigned char*)s2)[i]);
+	mem = malloc(nmemb * size);
+	if (!mem)
+		return (NULL);
+	while (i < nmemb * size)
+		((unsigned char *)mem)[i++] = '\0';
+	return (mem);
 }

@@ -1,23 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_bzero.c                                         :+:      :+:    :+:   */
+/*   ft_strlcat.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gmayweat <gmayweat@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/11/04 16:10:13 by gmayweat          #+#    #+#             */
-/*   Updated: 2020/12/25 10:40:30 by gmayweat         ###   ########.fr       */
+/*   Created: 2020/11/06 22:29:31 by gmayweat          #+#    #+#             */
+/*   Updated: 2020/12/29 14:42:42 by gmayweat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../libft.h"
 
-void	*ft_bzero(void *arr, size_t n)
+size_t	ft_strlcat(char *dest, const char *src, size_t size)
 {
-	size_t i;
+	size_t	i;
+	size_t	j;
 
 	i = 0;
-	while (i < n)
-		((unsigned char*)arr)[i++] = '\0';
-	return (arr);
+	j = ft_strlen(dest);
+	if (ft_strlen(dest) < size - 1 && size > 0)
+	{
+		while (src[i] && ft_strlen(dest) + i < size - 1)
+		{
+			dest[j] = src[i];
+			j++;
+			i++;
+		}
+		dest[j] = '\0';
+	}
+	if (ft_strlen(dest) >= size)
+		return (size + ft_strlen(src));
+	return (ft_strlen(dest) + ft_strlen(src));
 }
