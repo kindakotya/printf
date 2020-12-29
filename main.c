@@ -6,7 +6,7 @@
 /*   By: gmayweat <gmayweat@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/17 18:31:27 by gmayweat          #+#    #+#             */
-/*   Updated: 2020/12/29 14:33:19 by gmayweat         ###   ########.fr       */
+/*   Updated: 2020/12/29 17:30:15 by gmayweat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,10 +21,10 @@ int main()
 	char *s;
 	i = 10;
 	s = malloc(4);
-	int num = -4;
+	int num = 4;
 	ft_printf("1____________\n\n");
-	ft_printf("my = %dc\n", 214748368);
-	printf("pr = %dc\n\n", 214748368);
+	ft_printf("my = %dc\n", -214748368);
+	printf("pr = %+-dc\n\n", 214748368);
 
 	printf("2_____%%5d_____\n\n");
 	ft_printf("my = %5dc\n", num);
@@ -68,7 +68,7 @@ int main()
 
 	printf("12_____%%p______\n\n");
 	ft_printf("my = %pc\n", s);
-	printf("pr = %pc\n\n", s);
+	printf("pr = %10pc\n\n", s);
 
 	ft_printf("13_____%%u_______\n\n");
 	ft_printf("my = %uc\n", 214748364);

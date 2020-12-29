@@ -6,7 +6,7 @@
 /*   By: gmayweat <gmayweat@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/25 11:05:02 by gmayweat          #+#    #+#             */
-/*   Updated: 2020/12/29 14:49:48 by gmayweat         ###   ########.fr       */
+/*   Updated: 2020/12/29 17:28:55 by gmayweat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,6 @@ char			*ft_dextohex(long int n, char conv)
 	char	*hex;
 
 	nrazr  = ft_hexlen(n);
-
 	hex = malloc((nrazr + 1) * sizeof(char));
 	if (!hex)
 		return (NULL);

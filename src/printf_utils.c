@@ -6,7 +6,7 @@
 /*   By: gmayweat <gmayweat@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/21 21:39:29 by gmayweat          #+#    #+#             */
-/*   Updated: 2020/12/29 14:49:48 by gmayweat         ###   ########.fr       */
+/*   Updated: 2020/12/29 17:31:22 by gmayweat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ size_t		ft_flagcheck(const char *sub, va_list args, size_t *acc)
 		*acc = va_arg(args, size_t);
 	else if (ft_strchr(sub, '.'))
 		*acc = ft_atoi(ft_strchr(sub, '.') + 1);
-	if (!width && *acc)
+	if (!width && acc && *acc)
 		return (*acc);
 	return (width);
 }
