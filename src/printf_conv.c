@@ -6,7 +6,7 @@
 /*   By: gmayweat <gmayweat@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/18 23:30:14 by gmayweat          #+#    #+#             */
-/*   Updated: 2020/12/29 17:38:10 by gmayweat         ###   ########.fr       */
+/*   Updated: 2020/12/30 11:17:29 by gmayweat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,10 +77,9 @@ ssize_t		ft_putint(const char *sub, va_list args, char conv)
 		s = ft_dextohex(va_arg(args, long int), conv);
 	else
 		s = ft_itoa(va_arg(args, unsigned int));
-//	if (!sub[0])
-//		n = write(1, s, ft_strlen(s));
-//	else
-if (s[0] != '-')
+	if (ft_strchr(sub, '+') && s[0] != '-')
+		s = ft_addplus(&s);
+	if (s[0] != '-')
 		n = ft_printposnbr(sub, s, width, acc);
 	else
 		n = ft_printnegnbr(sub, s, width, acc);
@@ -117,6 +116,7 @@ ssize_t		ft_putpoint(const char *sub, va_list args)
 	ssize_t n;
 
 	n = 0;
+	width = 0;
 	if (sub[0])
 		width = ft_flagcheck(sub, args, 0);
 	s = ft_dextohex(va_arg(args, unsigned long int), 'x');

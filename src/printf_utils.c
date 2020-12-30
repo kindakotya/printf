@@ -6,7 +6,7 @@
 /*   By: gmayweat <gmayweat@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/21 21:39:29 by gmayweat          #+#    #+#             */
-/*   Updated: 2020/12/29 17:31:22 by gmayweat         ###   ########.fr       */
+/*   Updated: 2020/12/30 11:13:45 by gmayweat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,4 +86,23 @@ ssize_t		ft_printnegnbr(const char *sub, const char *s, size_t width, size_t acc
 	else if (sub[0] == '-' && !acc)
 		n += ft_printnchars(width - ft_strlen(s), ' ');
 	return (n);
+}
+
+char	*ft_addplus(char **s)
+{
+	int i;
+	char *meow;
+	int j;
+
+	i = 1;
+	j = 0;
+	meow = malloc((ft_strlen(*s) + 2) * sizeof(char));
+	if (!meow)
+		return (NULL);
+	meow[0] = '+';
+	while ((*s)[j])
+		meow[i++] = (*s)[j++];
+	meow[i] = '\0';
+	free(*s);
+	return (meow);
 }

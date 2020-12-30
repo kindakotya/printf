@@ -6,7 +6,7 @@
 /*   By: gmayweat <gmayweat@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/17 18:31:14 by gmayweat          #+#    #+#             */
-/*   Updated: 2020/12/29 14:49:48 by gmayweat         ###   ########.fr       */
+/*   Updated: 2020/12/30 11:10:59 by gmayweat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ static ssize_t	ft_callconv(char *sub, va_list args, char conv)
 	else if (conv == 'x' || conv == 'X')
 		return (ft_putint(sub, args, conv));
 	else if (conv == 'p')
-		return (ft_putpoint(args));
+		return (ft_putpoint(sub, args));
 	else if (conv == 'u')
 		return (ft_putuint(sub, args));
 	return (0);
