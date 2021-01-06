@@ -6,7 +6,7 @@
 /*   By: gmayweat <gmayweat@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/17 18:31:14 by gmayweat          #+#    #+#             */
-/*   Updated: 2020/12/30 11:10:59 by gmayweat         ###   ########.fr       */
+/*   Updated: 2021/01/06 18:05:59 by gmayweat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ static int		ft_isconv(int c)
 {
 	if (c != 'c' && c != 's' && c != 'p' && c != 'd' &&
 		c != 'i' && c != 'u' && c != 'x' && c != 'X' && c != '%')
-			return (0);
+		return (0);
 	return (1);
 }
 
@@ -34,8 +34,6 @@ static ssize_t	ft_callconv(char *sub, va_list args, char conv)
 	else if (conv == 's')
 		return (ft_putstr(sub, args));
 	else if (conv == 'd' || conv == 'i')
-		return (ft_putint(sub, args, conv));
-	else if (conv == 'u')
 		return (ft_putint(sub, args, conv));
 	else if (conv == 'x' || conv == 'X')
 		return (ft_putint(sub, args, conv));
@@ -48,9 +46,9 @@ static ssize_t	ft_callconv(char *sub, va_list args, char conv)
 
 static ssize_t	ft_symb(const char *s, size_t *i, va_list args)
 {
-	char *sub;
-	ssize_t n;
-	size_t start;
+	char	*sub;
+	size_t	start;
+	ssize_t	n;
 
 	start = *i;
 	while (!(ft_isconv(s[*i])) && s[*i])
@@ -65,10 +63,10 @@ static ssize_t	ft_symb(const char *s, size_t *i, va_list args)
 
 int				ft_printf(const char *s, ...)
 {
-	size_t i;
-	va_list args;
-	char *str;
-	ssize_t n;
+	char	*str;
+	size_t	i;
+	ssize_t	n;
+	va_list	args;
 
 	if (!s)
 		return (0);

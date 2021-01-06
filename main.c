@@ -6,7 +6,7 @@
 /*   By: gmayweat <gmayweat@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/17 18:31:27 by gmayweat          #+#    #+#             */
-/*   Updated: 2020/12/30 11:18:29 by gmayweat         ###   ########.fr       */
+/*   Updated: 2021/01/06 20:52:54 by gmayweat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,9 @@ int main()
 	ft_printf("13_____%%u_______\n\n");
 	ft_printf("my = %uc\n", 214748364);
 	printf("pr = %uc\n\n", 214748364);
+	ft_printf("13_____%%}}}s_______\n\n");
+	ft_printf("my = %dc\n", 'a');
+	printf("pr = %dc\n\n", 'a');
 	free(s);
 	return (0);
 }

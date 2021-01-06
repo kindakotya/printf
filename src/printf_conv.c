@@ -6,7 +6,7 @@
 /*   By: gmayweat <gmayweat@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/18 23:30:14 by gmayweat          #+#    #+#             */
-/*   Updated: 2020/12/30 11:17:29 by gmayweat         ###   ########.fr       */
+/*   Updated: 2021/01/06 18:01:50 by gmayweat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ ssize_t		ft_putchar(char *sub, va_list args)
 			ft_printnchars(n - 1, ' ');
 	}
 	c = va_arg(args, int);
-	write (1, &c, 1);
+	write(1, &c, 1);
 	if (sub[0] == '-')
 		ft_printnchars(n - 1, ' ');
 	return (n);
@@ -73,10 +73,8 @@ ssize_t		ft_putint(const char *sub, va_list args, char conv)
 		width = ft_flagcheck(sub, args, &acc);
 	if (conv == 'd' || conv == 'i')
 		s = ft_itoa(va_arg(args, int));
-	else if (conv == 'x' || conv == 'X')
-		s = ft_dextohex(va_arg(args, long int), conv);
 	else
-		s = ft_itoa(va_arg(args, unsigned int));
+		s = ft_dextohex(va_arg(args, long int), conv);
 	if (ft_strchr(sub, '+') && s[0] != '-')
 		s = ft_addplus(&s);
 	if (s[0] != '-')
@@ -101,6 +99,8 @@ ssize_t		ft_putuint(const char *sub, va_list args)
 		width = ft_flagcheck(sub, args, &acc);
 	num = va_arg(args, unsigned int);
 	s = ft_itoa(num);
+	if (ft_strchr(sub, '+'))
+		s = ft_addplus(&s);
 	if (!sub[0])
 		n = write(1, s, ft_strlen(s));
 	else

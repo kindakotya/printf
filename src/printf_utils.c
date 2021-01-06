@@ -6,7 +6,7 @@
 /*   By: gmayweat <gmayweat@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/21 21:39:29 by gmayweat          #+#    #+#             */
-/*   Updated: 2020/12/30 11:13:45 by gmayweat         ###   ########.fr       */
+/*   Updated: 2021/01/06 17:35:30 by gmayweat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,8 @@ size_t		ft_flagcheck(const char *sub, va_list args, size_t *acc)
 	return (width);
 }
 
-ssize_t		ft_printposnbr(const char *sub, const char *s, size_t width, size_t acc)
+ssize_t		ft_printposnbr(const char *sub, const char *s,
+	size_t width, size_t acc)
 {
 	ssize_t n;
 
@@ -66,7 +67,8 @@ ssize_t		ft_printposnbr(const char *sub, const char *s, size_t width, size_t acc
 	return (n);
 }
 
-ssize_t		ft_printnegnbr(const char *sub, const char *s, size_t width, size_t acc)
+ssize_t		ft_printnegnbr(const char *sub, const char *s,
+	size_t width, size_t acc)
 {
 	ssize_t n;
 
@@ -88,11 +90,11 @@ ssize_t		ft_printnegnbr(const char *sub, const char *s, size_t width, size_t acc
 	return (n);
 }
 
-char	*ft_addplus(char **s)
+char		*ft_addplus(char **s)
 {
-	int i;
-	char *meow;
-	int j;
+	int		i;
+	int		j;
+	char	*meow;
 
 	i = 1;
 	j = 0;

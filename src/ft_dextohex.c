@@ -6,7 +6,7 @@
 /*   By: gmayweat <gmayweat@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/25 11:05:02 by gmayweat          #+#    #+#             */
-/*   Updated: 2020/12/29 17:28:55 by gmayweat         ###   ########.fr       */
+/*   Updated: 2021/01/06 17:31:23 by gmayweat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ static size_t	ft_hexlen(long int n)
 
 static char		ft_puthex(unsigned int n, char conv)
 {
-	if (n < 10 )
+	if (n < 10)
 		return (n + '0');
 	else if (conv == 'x')
 		return (n - 10 + 'a');
@@ -45,7 +45,7 @@ char			*ft_dextohex(long int n, char conv)
 	size_t	nrazr;
 	char	*hex;
 
-	nrazr  = ft_hexlen(n);
+	nrazr = ft_hexlen(n);
 	hex = malloc((nrazr + 1) * sizeof(char));
 	if (!hex)
 		return (NULL);
