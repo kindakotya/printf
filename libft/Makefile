@@ -6,7 +6,7 @@
 #    By: gmayweat <gmayweat@42.fr>                  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/11/03 09:56:58 by gmayweat          #+#    #+#              #
-#    Updated: 2021/01/06 17:28:03 by gmayweat         ###   ########.fr        #
+#    Updated: 2021/01/07 18:47:00 by gmayweat         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -62,6 +62,7 @@ all: $(NAME)
 
 $(NAME): $(OBJDIR) $(OBJS)
 	ar rc $(NAME) $(OBJSPATH)
+	ranlib $(NAME)
 
 %.o: %.c libft.h
 	gcc -g -Wall -Wextra -Werror -o $(patsubst src/%, obj/%, $(patsubst %.c, %.o, $<)) -c $<

@@ -4,27 +4,17 @@
 	// Для получения дополнительной информации посетите: https://go.microsoft.com/fwlink/?linkid=830387
 	"version": "0.2.0",
 	"configurations": [
-
-
-	{
-		"name": "(gdb) Запустить",
-		"type": "cppdbg",
-		"request": "launch",
-		"program": "${workspaceFolder}/printf",
-		"args": [],
-		"stopAtEntry": false,
-		"cwd": "${workspaceFolder}",
-		"environment": [ { "name": "squid", "value": "clam" } ],
-		"externalConsole": false,
-		"MIMode": "gdb"
-	},
-	{
-		"name": "(gdb) Подключить",
-		"type": "cppdbg",
-		"request": "attach",
-		"program": "${workspaceFolder}/printf",
-		"processId": "${command:pickProcess}",
-		"MIMode": "gdb"
-	}
+		{
+			"name": "(lldb) Запустить",
+			"type": "cppdbg",
+			"request": "launch",
+			"program": "${workspaceFolder}/printf",
+			"args": [],
+			"stopAtEntry": false,
+			"cwd": "${workspaceFolder}",
+			"environment": [],
+			"externalConsole": false,
+			"MIMode": "lldb"
+		}
 	]
 }

@@ -6,7 +6,7 @@
 /*   By: gmayweat <gmayweat@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/18 23:30:14 by gmayweat          #+#    #+#             */
-/*   Updated: 2021/01/06 18:01:50 by gmayweat         ###   ########.fr       */
+/*   Updated: 2021/01/07 20:44:30 by gmayweat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,8 @@
 ssize_t		ft_putchar(char *sub, va_list args)
 {
 	ssize_t		n;
+	size_t		i;
 	char		c;
-	int			i;
 
 	n = 1;
 	if (sub[0])
@@ -41,16 +41,21 @@ ssize_t		ft_putchar(char *sub, va_list args)
 ssize_t		ft_putstr(const char *sub, va_list args)
 {
 	ssize_t		n;
-	size_t		width;
-	size_t		acc;
+	ssize_t		width;
+	ssize_t		acc;
 	char		*s;
 
 	n = 0;
 	acc = -1;
+	width = 0;
 	if (sub[0])
 		width = ft_flagcheck(sub, args, &acc);
 	s = va_arg(args, char*);
-	if (acc > ft_strlen(s))
+	if (!s)
+		s = "(null)\0";
+	else if (!s[0])
+		s = "\0";
+	if (acc > (ssize_t)ft_strlen(s) || acc == -1)
 		acc = ft_strlen(s);
 	if (sub[0] != '-')
 		n += ft_printnchars(width - acc, ' ');
@@ -63,8 +68,8 @@ ssize_t		ft_putstr(const char *sub, va_list args)
 ssize_t		ft_putint(const char *sub, va_list args, char conv)
 {
 	ssize_t	n;
-	size_t	width;
-	size_t	acc;
+	ssize_t	width;
+	ssize_t	acc;
 	char	*s;
 
 	width = 0;
@@ -76,7 +81,9 @@ ssize_t		ft_putint(const char *sub, va_list args, char conv)
 	else
 		s = ft_dextohex(va_arg(args, long int), conv);
 	if (ft_strchr(sub, '+') && s[0] != '-')
-		s = ft_addplus(&s);
+		s = ft_addchar(&s, '+');
+	else if (ft_strchr(sub, ' ') && s[0] != '-')
+		s = ft_addchar(&s, ' ');
 	if (s[0] != '-')
 		n = ft_printposnbr(sub, s, width, acc);
 	else
@@ -89,8 +96,8 @@ ssize_t		ft_putuint(const char *sub, va_list args)
 {
 	unsigned int	num;
 	ssize_t			n;
-	size_t			width;
-	size_t			acc;
+	ssize_t			width;
+	ssize_t			acc;
 	char			*s;
 
 	width = 0;
@@ -100,7 +107,9 @@ ssize_t		ft_putuint(const char *sub, va_list args)
 	num = va_arg(args, unsigned int);
 	s = ft_itoa(num);
 	if (ft_strchr(sub, '+'))
-		s = ft_addplus(&s);
+		s = ft_addchar(&s, '+');
+	if (ft_strchr(sub, ' '))
+		s = ft_addchar(&s, ' ');
 	if (!sub[0])
 		n = write(1, s, ft_strlen(s));
 	else
@@ -112,8 +121,8 @@ ssize_t		ft_putuint(const char *sub, va_list args)
 ssize_t		ft_putpoint(const char *sub, va_list args)
 {
 	char	*s;
-	size_t	width;
 	ssize_t n;
+	ssize_t	width;
 
 	n = 0;
 	width = 0;
