@@ -6,7 +6,7 @@
 /*   By: gmayweat <gmayweat@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/17 18:31:14 by gmayweat          #+#    #+#             */
-/*   Updated: 2021/01/06 18:05:59 by gmayweat         ###   ########.fr       */
+/*   Updated: 2021/01/08 21:27:21 by gmayweat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,9 @@ static int		ft_isconv(int c)
 static ssize_t	ft_callconv(char *sub, va_list args, char conv)
 {
 	if (conv == 'c')
-		return (ft_putchar(sub, args));
+		return (ft_putchar(sub, args, conv));
+	else if (conv == '%')
+		return(ft_putchar(sub, args, conv));
 	else if (conv == 's')
 		return (ft_putstr(sub, args));
 	else if (conv == 'd' || conv == 'i')
@@ -53,8 +55,6 @@ static ssize_t	ft_symb(const char *s, size_t *i, va_list args)
 	start = *i;
 	while (!(ft_isconv(s[*i])) && s[*i])
 		++(*i);
-	if (s[*i] == '%')
-		return (write(1, "%", 1));
 	sub = ft_substr(s, start, *i - start);
 	n = ft_callconv(sub, args, s[*i]);
 	free(sub);

@@ -6,7 +6,7 @@
 /*   By: gmayweat <gmayweat@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/07 20:59:20 by gmayweat          #+#    #+#             */
-/*   Updated: 2021/01/07 21:12:22 by gmayweat         ###   ########.fr       */
+/*   Updated: 2021/01/08 21:18:11 by gmayweat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,11 +18,11 @@ ssize_t		ft_printposnbr(const char *sub, const char *s,
 	ssize_t n;
 
 	n = 0;
-	if (!acc)
-		acc = ft_strlen(s);
-	if (sub[0] != '-' && sub[0] != '0')
+	// if (!acc || acc < (ssize_t)ft_strlen(s))
+	// 	acc = ft_strlen(s);
+	if (sub[0] != '-' && (sub[0] != '0' || (acc && sub[0] == '0')))
 		n += ft_printnchars(width - acc, ' ');
-	if (sub[0] == '0' && acc == ft_strlen(s))
+	if (sub[0] == '0' && width - acc - ft_strlen(s) > 0)
 		n += ft_printnchars(width - acc, '0');
 	else
 		n += ft_printnchars(acc - ft_strlen(s), '0');
@@ -71,6 +71,8 @@ char	*ft_bonusflags(const char *sub, char **s, char conv)
 		meow = ft_strjoin("0x", *s);
 	else if (ft_strchr(sub, '#') && conv == 'X')
 		meow = ft_strjoin("0X", *s);
+	else
+		meow = "\0";
 	free(*s);
 	return (meow);
 }

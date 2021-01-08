@@ -6,13 +6,13 @@
 /*   By: gmayweat <gmayweat@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/18 23:30:14 by gmayweat          #+#    #+#             */
-/*   Updated: 2021/01/07 20:44:30 by gmayweat         ###   ########.fr       */
+/*   Updated: 2021/01/08 21:25:51 by gmayweat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../libftprintf.h"
 
-ssize_t		ft_putchar(char *sub, va_list args)
+ssize_t		ft_putchar(char *sub, va_list args, char conv)
 {
 	ssize_t		n;
 	size_t		i;
@@ -31,7 +31,10 @@ ssize_t		ft_putchar(char *sub, va_list args)
 		if (sub[0] != '-')
 			ft_printnchars(n - 1, ' ');
 	}
-	c = va_arg(args, int);
+	if (conv == 'c')
+		c = va_arg(args, int);
+	else
+		c = '%';
 	write(1, &c, 1);
 	if (sub[0] == '-')
 		ft_printnchars(n - 1, ' ');
@@ -80,10 +83,8 @@ ssize_t		ft_putint(const char *sub, va_list args, char conv)
 		s = ft_itoa(va_arg(args, int));
 	else
 		s = ft_dextohex(va_arg(args, long int), conv);
-	if (ft_strchr(sub, '+') && s[0] != '-')
-		s = ft_addchar(&s, '+');
-	else if (ft_strchr(sub, ' ') && s[0] != '-')
-		s = ft_addchar(&s, ' ');
+	if (ft_strchr(sub, '+') || ft_strchr(sub, ' ') || ft_strchr(sub, '#'))
+		s = ft_bonusflags(sub, &s, conv);
 	if (s[0] != '-')
 		n = ft_printposnbr(sub, s, width, acc);
 	else
@@ -106,10 +107,8 @@ ssize_t		ft_putuint(const char *sub, va_list args)
 		width = ft_flagcheck(sub, args, &acc);
 	num = va_arg(args, unsigned int);
 	s = ft_itoa(num);
-	if (ft_strchr(sub, '+'))
-		s = ft_addchar(&s, '+');
-	if (ft_strchr(sub, ' '))
-		s = ft_addchar(&s, ' ');
+	if (ft_strchr(sub, '+') || ft_strchr(sub, ' ') || ft_strchr(sub, '#'))
+		s = ft_bonusflags(sub, &s, 'u');
 	if (!sub[0])
 		n = write(1, s, ft_strlen(s));
 	else

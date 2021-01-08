@@ -6,7 +6,7 @@
 /*   By: gmayweat <gmayweat@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/17 18:43:54 by gmayweat          #+#    #+#             */
-/*   Updated: 2021/01/07 20:58:02 by gmayweat         ###   ########.fr       */
+/*   Updated: 2021/01/08 21:27:02 by gmayweat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
 # include <stdio.h>
 
 int			ft_printf(const char *s, ...);
-ssize_t		ft_putchar(char *sub, va_list args);
+ssize_t		ft_putchar(char *sub, va_list args, char conv);
 ssize_t		ft_putstr(const char *sub, va_list args);
 ssize_t		ft_putint(const char *sub, va_list args, char conv);
 ssize_t		ft_putuint(const char *sub, va_list args);
@@ -31,7 +31,7 @@ ssize_t		ft_printposnbr(const char *sub, const char *s,
 	ssize_t width, ssize_t acc);
 ssize_t		ft_printnegnbr(const char *sub, const char *s,
 	ssize_t width, ssize_t acc);
-char		*ft_addchar(char **s, char c);
+char		*ft_bonusflags(const char *sub, char **s, char conv);
 char		*ft_dextohex(long int n, char conv);
 
 #endif

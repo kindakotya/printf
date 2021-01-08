@@ -6,7 +6,7 @@
 /*   By: gmayweat <gmayweat@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/21 21:39:29 by gmayweat          #+#    #+#             */
-/*   Updated: 2021/01/07 21:01:46 by gmayweat         ###   ########.fr       */
+/*   Updated: 2021/01/08 20:59:02 by gmayweat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ char		*ft_addchar(char **s, char c)
 
 	i = 1;
 	j = 0;
-	meow = malloc((ft_strlen(*s) + 2) * sizeof(int*));
+	meow = malloc((ft_strlen(*s) + 2) * sizeof(char));
 	if (!meow)
 		return (NULL);
 	meow[0] = c;
@@ -63,3 +63,4 @@ char		*ft_addchar(char **s, char c)
 	free(*s);
 	return (meow);
 }
+
