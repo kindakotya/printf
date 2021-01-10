@@ -6,7 +6,7 @@
 /*   By: gmayweat <gmayweat@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/25 11:05:02 by gmayweat          #+#    #+#             */
-/*   Updated: 2021/01/08 20:00:55 by gmayweat         ###   ########.fr       */
+/*   Updated: 2021/01/10 19:13:15 by gmayweat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,7 @@ char			*ft_dextohex(long int n, char conv)
 		hex[0] = '-';
 		n = -n;
 	}
+	hex[0] = '0';
 	hex[nrazr] = '\0';
 	while (n)
 	{

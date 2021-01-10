@@ -6,20 +6,23 @@
 /*   By: gmayweat <gmayweat@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/21 21:39:29 by gmayweat          #+#    #+#             */
-/*   Updated: 2021/01/08 20:59:02 by gmayweat         ###   ########.fr       */
+/*   Updated: 2021/01/10 19:38:32 by gmayweat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../libftprintf.h"
 
-ssize_t		ft_printnchars(size_t n, char c)
+ssize_t		ft_printnchars(size_t n, char c, ssize_t *width)
 {
 	ssize_t i;
 
 	i = 0;
 	while (i < (ssize_t)n)
 	{
-		write(1, &c, 1);
+		if (width)
+			*width -= write(1, &c, 1);
+		else
+			write(1, &c, 1);
 		++i;
 	}
 	return (i);
@@ -63,4 +66,3 @@ char		*ft_addchar(char **s, char c)
 	free(*s);
 	return (meow);
 }
-

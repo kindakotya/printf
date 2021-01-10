@@ -6,7 +6,7 @@
 /*   By: gmayweat <gmayweat@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/17 18:31:14 by gmayweat          #+#    #+#             */
-/*   Updated: 2021/01/08 21:27:21 by gmayweat         ###   ########.fr       */
+/*   Updated: 2021/01/10 20:48:26 by gmayweat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,17 +14,16 @@
 
 static int		ft_stop(const char *s, size_t i, ssize_t *n)
 {
-	while (s[i] != '%' && s[i])
+	while (s[i] != '%' && s[i] && i < ft_strlen(s))
 		*n += write(1, &(s[i++]), 1);
 	return (i);
 }
 
-static int		ft_isconv(int c)
+static t_struct	ft_screat(va_list args)
 {
-	if (c != 'c' && c != 's' && c != 'p' && c != 'd' &&
-		c != 'i' && c != 'u' && c != 'x' && c != 'X' && c != '%')
-		return (0);
-	return (1);
+	t_struct s_args;
+
+
 }
 
 static ssize_t	ft_callconv(char *sub, va_list args, char conv)
@@ -53,7 +52,9 @@ static ssize_t	ft_symb(const char *s, size_t *i, va_list args)
 	ssize_t	n;
 
 	start = *i;
-	while (!(ft_isconv(s[*i])) && s[*i])
+	while (!(s[*i] != 'c' && s[*i] != 's' && s[*i] != 'p'
+	&& s[*i] != 'd' && s[*i] != 'i' && s[*i] != 'u'
+	&& s[*i] != 'x' && s[*i] != 'X' && s[*i] != '%') && s[*i])
 		++(*i);
 	sub = ft_substr(s, start, *i - start);
 	n = ft_callconv(sub, args, s[*i]);
@@ -63,25 +64,22 @@ static ssize_t	ft_symb(const char *s, size_t *i, va_list args)
 
 int				ft_printf(const char *s, ...)
 {
-	char	*str;
 	size_t	i;
 	ssize_t	n;
 	va_list	args;
 
 	if (!s)
 		return (0);
-	str = ft_strdup(s);
 	va_start(args, s);
 	i = 0;
 	n = 0;
-	while (str[i])
+	while (s[i] && i <= ft_strlen(s))
 	{
-		i = ft_stop(str, i, &n) + 1;
-		if (str[i])
-			n += ft_symb(str, &i, args);
+		i = ft_stop(s, i, &n) + 1;
+		if (s[i] && i <= ft_strlen(s))
+			n += ft_symb(s, &i, args);
 		++i;
 	}
-	free(str);
 	va_end(args);
 	return (n);
 }
