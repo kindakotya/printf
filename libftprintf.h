@@ -6,7 +6,7 @@
 /*   By: gmayweat <gmayweat@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/17 18:43:54 by gmayweat          #+#    #+#             */
-/*   Updated: 2021/01/10 20:46:33 by gmayweat         ###   ########.fr       */
+/*   Updated: 2021/01/11 13:44:41 by gmayweat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,25 +25,24 @@ typedef struct	s_struct
 	ssize_t width;
 	int		is_acc;
 	ssize_t acc;
-	int		is_minus;
-	int		is_zero;
-	int		n_sym;
+	int		minus;
+	int		zero;
+	char	conv;
 	va_list args;
-}				t_struct;
+	char	bonf;
+}				t_prarg;
 
 int			ft_printf(const char *s, ...);
-ssize_t		ft_putchar(char *sub, va_list args, char conv);
-ssize_t		ft_putstr(const char *sub, va_list args);
-ssize_t		ft_putint(const char *sub, va_list args, char conv);
-ssize_t		ft_putuint(const char *sub, va_list args);
-ssize_t		ft_putpoint(const char *sub, va_list args);
-ssize_t		ft_printnchars(size_t n, char c, ssize_t *width);
-ssize_t		ft_flagcheck(const char *sub, va_list args, ssize_t *acc);
-ssize_t		ft_printposnbr(const char *sub, const char *s,
-	ssize_t width, ssize_t acc);
-ssize_t		ft_printnegnbr(const char *sub, const char *s,
-	ssize_t width, ssize_t acc);
-char		*ft_bonusflags(const char *sub, char **s, char conv);
+ssize_t		ft_putchar(t_prarg *s_box);
+ssize_t		ft_putstr(t_prarg *s_box);
+ssize_t		ft_putint(t_prarg *s_box);
+ssize_t		ft_putuint(t_prarg *s_box);
+ssize_t		ft_putpoint(t_prarg *s_box);
+ssize_t		ft_printnch(size_t n, char c, ssize_t *width);
+void		ft_flagcheck(const char *sub, t_prarg *s_box);
+ssize_t		ft_printposnbr(const char *s, t_prarg *s_box);
+ssize_t		ft_printnegnbr(const char *s, t_prarg *s_box);
+char		*ft_bonusflags(char **s, t_prarg *s_box);
 char		*ft_dextohex(long int n, char conv);
 
 #endif

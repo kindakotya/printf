@@ -6,59 +6,85 @@
 /*   By: gmayweat <gmayweat@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/17 18:31:14 by gmayweat          #+#    #+#             */
-/*   Updated: 2021/01/10 20:48:26 by gmayweat         ###   ########.fr       */
+/*   Updated: 2021/01/11 16:04:04 by gmayweat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../libftprintf.h"
 
-static int		ft_stop(const char *s, size_t i, ssize_t *n)
+static void		ft_fillbox(const char *s, size_t start, size_t len, t_prarg *s_box)
 {
-	while (s[i] != '%' && s[i] && i < ft_strlen(s))
-		*n += write(1, &(s[i++]), 1);
-	return (i);
+	char sub[len + 1];
+	size_t i;
+
+	i = 0;
+	sub[len] = '\0';
+	while (i < len)
+		sub[i++] = s[start++];
+	if (ft_strchr(sub, '-'))
+		s_box->minus = 1;
+	else if (ft_strchr(sub, '0'))
+		s_box->zero = 1;
+	if (ft_strchr(sub, '+'))
+		s_box->bonf = '+';
+	else if (ft_strchr(sub, ' '))
+		s_box->bonf = ' ';
+	else if (ft_strchr(sub, '#'))
+		s_box->bonf = '#';
+	ft_flagcheck(sub, s_box);
+	if (s_box->width < 0)
+	{
+		s_box->minus = 1;
+		s_box->width *= -1;
+	}
 }
 
-static t_struct	ft_screat(va_list args)
+static t_prarg	ft_screat()
 {
-	t_struct s_args;
+	t_prarg s_box;
 
-
+	s_box.is_width = 0;
+	s_box.is_acc = 0;
+	s_box.width = 0;
+	s_box.acc = 0;
+	s_box.minus = 0;
+	s_box.zero = 0;
+	s_box.bonf = 0;
+	return (s_box);
 }
 
-static ssize_t	ft_callconv(char *sub, va_list args, char conv)
+static ssize_t	ft_callconv(t_prarg *s_box)
 {
-	if (conv == 'c')
-		return (ft_putchar(sub, args, conv));
-	else if (conv == '%')
-		return(ft_putchar(sub, args, conv));
-	else if (conv == 's')
-		return (ft_putstr(sub, args));
-	else if (conv == 'd' || conv == 'i')
-		return (ft_putint(sub, args, conv));
-	else if (conv == 'x' || conv == 'X')
-		return (ft_putint(sub, args, conv));
-	else if (conv == 'p')
-		return (ft_putpoint(sub, args));
-	else if (conv == 'u')
-		return (ft_putuint(sub, args));
+	if (s_box->conv == 'c')
+		return (ft_putchar(s_box));
+	else if (s_box->conv == '%')
+		return(ft_putchar(s_box));
+	else if (s_box->conv == 's')
+		return (ft_putstr(s_box));
+	else if (s_box->conv == 'd' || s_box->conv == 'i')
+		return (ft_putint(s_box));
+	else if (s_box->conv == 'x' || s_box->conv == 'X')
+		return (ft_putint(s_box));
+	else if (s_box->conv == 'p')
+		return (ft_putpoint(s_box));
+	else if (s_box->conv == 'u')
+		return (ft_putuint(s_box));
 	return (0);
 }
 
-static ssize_t	ft_symb(const char *s, size_t *i, va_list args)
+static ssize_t	ft_symb(const char *s, size_t *i, t_prarg *s_box)
 {
-	char	*sub;
 	size_t	start;
 	ssize_t	n;
 
 	start = *i;
-	while (!(s[*i] != 'c' && s[*i] != 's' && s[*i] != 'p'
+	while (s[*i] != 'c' && s[*i] != 's' && s[*i] != 'p'
 	&& s[*i] != 'd' && s[*i] != 'i' && s[*i] != 'u'
-	&& s[*i] != 'x' && s[*i] != 'X' && s[*i] != '%') && s[*i])
+	&& s[*i] != 'x' && s[*i] != 'X' && s[*i] != '%' && s[*i])
 		++(*i);
-	sub = ft_substr(s, start, *i - start);
-	n = ft_callconv(sub, args, s[*i]);
-	free(sub);
+	ft_fillbox(s, start, *i - start, s_box);
+	s_box->conv = s[*i];
+	n = ft_callconv(s_box);
 	return (n);
 }
 
@@ -67,18 +93,21 @@ int				ft_printf(const char *s, ...)
 	size_t	i;
 	ssize_t	n;
 	va_list	args;
+	t_prarg s_box;
 
 	if (!s)
 		return (0);
-	va_start(args, s);
+	s_box = ft_screat();
+	va_start(s_box.args, s);
 	i = 0;
 	n = 0;
 	while (s[i] && i <= ft_strlen(s))
 	{
-		i = ft_stop(s, i, &n) + 1;
-		if (s[i] && i <= ft_strlen(s))
-			n += ft_symb(s, &i, args);
+		while (s[i] != '%' && s[i] && i < ft_strlen(s))
+			n += write(1, &(s[i++]), 1);
 		++i;
+		if (s[i] && i <= ft_strlen(s))
+			n += ft_symb(s, &i, &s_box);
 	}
 	va_end(args);
 	return (n);

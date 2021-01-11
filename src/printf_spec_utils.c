@@ -6,38 +6,35 @@
 /*   By: gmayweat <gmayweat@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/07 20:59:20 by gmayweat          #+#    #+#             */
-/*   Updated: 2021/01/10 18:48:17 by gmayweat         ###   ########.fr       */
+/*   Updated: 2021/01/11 13:57:24 by gmayweat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../libftprintf.h"
 
-ssize_t		ft_printposnbr(const char *sub, const char *s,
-	ssize_t width, ssize_t acc)
+ssize_t		ft_printposnbr(const char *s, t_prarg *s_box)
 {
 	ssize_t n;
 
-	if (ft_strchr(sub, '.') && !acc)
-		return (ft_printnchars(width, ' ', 0));
+	if (s_box->is_acc && !s_box->acc)
+		return (ft_printnch(s_box->width, ' ', 0));
+	if (!s_box->is_acc || (s_box->acc && s_box->acc < (ssize_t)ft_strlen(s)))
+		s_box->acc = ft_strlen(s);
 	n = 0;
-	if (!ft_strchr(sub, '-') && acc > (ssize_t)ft_strlen(s))
-		n += ft_printnchars(width - acc, ' ', &width);
-	else if (((!acc && !ft_strchr(sub, '0')) ||
-	(acc && acc < (ssize_t)ft_strlen(s))) && !ft_strchr(sub, '-'))
-		n += ft_printnchars(width - ft_strlen(s), ' ', &width);
-	if (ft_strchr(sub, '0') && width > (ssize_t)ft_strlen(s) && !acc)
-		n += ft_printnchars(width - ft_strlen(s), '0', &width);
+	if (!s_box->minus && (s_box->is_acc || !s_box->zero))
+		n += ft_printnch(s_box->width - s_box->acc, ' ', &s_box->width);
+	if (!s_box->is_acc && s_box->zero)
+		n += ft_printnch(s_box->width - s_box->acc, '0', &s_box->width);
 	else
-		n += ft_printnchars(acc - ft_strlen(s), '0', &width);
+		n += ft_printnch(s_box->acc - ft_strlen(s), '0', &s_box->width);
 	n += write(1, s, ft_strlen(s));
-	width -= ft_strlen(s);
-	if (ft_strchr(sub, '-'))
-		n += ft_printnchars(width, ' ', 0);
+	s_box->width -= ft_strlen(s);
+	if (s_box->minus)
+		n += ft_printnch(s_box->width, ' ', 0);
 	return (n);
 }
 
-ssize_t		ft_printnegnbr(const char *sub, const char *s,
-	ssize_t width, ssize_t acc)
+ssize_t		ft_printnegnbr(const char *s, t_prarg *s_box)
 {
 	int		ox;
 	ssize_t n;
@@ -46,39 +43,35 @@ ssize_t		ft_printnegnbr(const char *sub, const char *s,
 	ox = 1;
 	if (s[1] == 'x' || s[1] == 'X')
 		ox = 2;
-	if (!ft_strchr(sub, '-') && acc > (ssize_t)ft_strlen(s) - ox)
-		n += ft_printnchars(width - acc - ox, ' ', &width);
-	else if (((!acc && !ft_strchr(sub, '0')) ||
-	(acc && acc < (ssize_t)ft_strlen(s) - ox)) && !ft_strchr(sub, '-'))
-		n += ft_printnchars(width - ft_strlen(s), ' ', &width);
+	if (!s_box->minus && s_box->acc > (ssize_t)ft_strlen(s) - ox)
+		n += ft_printnch(s_box->width - s_box->acc - ox, ' ', &s_box->width);
+	else if (((!s_box->is_acc && !s_box->zero) ||(s_box->is_acc
+	&& s_box->acc < (ssize_t)ft_strlen(s) - ox)) && !s_box->minus)
+		n += ft_printnch(s_box->width - ft_strlen(s), ' ', &s_box->width);
 	n += write(1, s, ox);
-	--width;
-	if (ft_strchr(sub, '0') && !acc)
-		n += ft_printnchars(width - ft_strlen(s) + ox, '0', &width);
+	--s_box->width;
+	if (s_box->zero && !s_box->is_acc)
+		n += ft_printnch(s_box->width - ft_strlen(s) + ox, '0', &s_box->width);
 	else
-		n += ft_printnchars(acc - ft_strlen(s) + ox, '0', &width);
+		n += ft_printnch(s_box->acc - ft_strlen(s) + ox, '0', &s_box->width);
 	n += write(1, s + ox, ft_strlen(s) - ox);
-	width -= ft_strlen(s) - ox;
-	if (ft_strchr(sub, '-'))
-		n += ft_printnchars(width, ' ', 0);
+	s_box->width -= ft_strlen(s) - ox;
+	if (s_box->minus)
+		n += ft_printnch(s_box->width, ' ', 0);
 	return (n);
 }
 
-char		*ft_bonusflags(const char *sub, char **s, char conv)
+char		*ft_bonusflags(char **s, t_prarg *s_box)
 {
-	int		i;
-	int		j;
 	char	*meow;
 
-	i = 1;
-	j = 0;
-	if (ft_strchr(sub, '+'))
+	if (s_box->bonf == '+')
 		meow = ft_strjoin("+", *s);
-	else if (ft_strchr(sub, ' '))
+	else if (s_box->bonf == ' ')
 		meow = ft_strjoin(" ", *s);
-	else if (ft_strchr(sub, '#') && conv == 'x')
+	else if (s_box->bonf == '#' && s_box->conv == 'x')
 		meow = ft_strjoin("0x", *s);
-	else if (ft_strchr(sub, '#') && conv == 'X')
+	else if (s_box->bonf == '#' && s_box->conv == 'X')
 		meow = ft_strjoin("0X", *s);
 	else
 		meow = "\0";
