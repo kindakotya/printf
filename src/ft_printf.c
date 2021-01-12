@@ -6,7 +6,7 @@
 /*   By: gmayweat <gmayweat@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/17 18:31:14 by gmayweat          #+#    #+#             */
-/*   Updated: 2021/01/11 16:04:04 by gmayweat         ###   ########.fr       */
+/*   Updated: 2021/01/12 18:17:39 by gmayweat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,20 +37,18 @@ static void		ft_fillbox(const char *s, size_t start, size_t len, t_prarg *s_box)
 		s_box->minus = 1;
 		s_box->width *= -1;
 	}
+	if (s_box->zero && s_box->minus)
+		s_box->zero = 0;
 }
 
-static t_prarg	ft_screat()
+static void	ft_sclean(t_prarg *s_box)
 {
-	t_prarg s_box;
-
-	s_box.is_width = 0;
-	s_box.is_acc = 0;
-	s_box.width = 0;
-	s_box.acc = 0;
-	s_box.minus = 0;
-	s_box.zero = 0;
-	s_box.bonf = 0;
-	return (s_box);
+	s_box->is_acc = 0;
+	s_box->width = 0;
+	s_box->acc = 0;
+	s_box->minus = 0;
+	s_box->zero = 0;
+	s_box->bonf = 0;
 }
 
 static ssize_t	ft_callconv(t_prarg *s_box)
@@ -92,23 +90,23 @@ int				ft_printf(const char *s, ...)
 {
 	size_t	i;
 	ssize_t	n;
-	va_list	args;
 	t_prarg s_box;
 
 	if (!s)
 		return (0);
-	s_box = ft_screat();
 	va_start(s_box.args, s);
 	i = 0;
 	n = 0;
 	while (s[i] && i <= ft_strlen(s))
 	{
+		ft_sclean(&s_box);
 		while (s[i] != '%' && s[i] && i < ft_strlen(s))
 			n += write(1, &(s[i++]), 1);
 		++i;
 		if (s[i] && i <= ft_strlen(s))
 			n += ft_symb(s, &i, &s_box);
+		++i;
 	}
-	va_end(args);
+	va_end(s_box.args);
 	return (n);
 }

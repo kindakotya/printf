@@ -6,7 +6,7 @@
 /*   By: gmayweat <gmayweat@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/17 18:43:54 by gmayweat          #+#    #+#             */
-/*   Updated: 2021/01/11 13:44:41 by gmayweat         ###   ########.fr       */
+/*   Updated: 2021/01/12 11:07:46 by gmayweat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,6 @@
 
 typedef struct	s_struct
 {
-	int		is_width;
 	ssize_t width;
 	int		is_acc;
 	ssize_t acc;

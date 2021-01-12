@@ -6,7 +6,7 @@
 /*   By: gmayweat <gmayweat@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/07 20:59:20 by gmayweat          #+#    #+#             */
-/*   Updated: 2021/01/11 13:57:24 by gmayweat         ###   ########.fr       */
+/*   Updated: 2021/01/12 17:44:38 by gmayweat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,9 @@ ssize_t		ft_printposnbr(const char *s, t_prarg *s_box)
 {
 	ssize_t n;
 
-	if (s_box->is_acc && !s_box->acc)
+	if (s_box->is_acc && !s_box->acc && s[0] == '0')
 		return (ft_printnch(s_box->width, ' ', 0));
-	if (!s_box->is_acc || (s_box->acc && s_box->acc < (ssize_t)ft_strlen(s)))
+	if (!s_box->is_acc || s_box->acc < (ssize_t)ft_strlen(s))
 		s_box->acc = ft_strlen(s);
 	n = 0;
 	if (!s_box->minus && (s_box->is_acc || !s_box->zero))
@@ -36,7 +36,7 @@ ssize_t		ft_printposnbr(const char *s, t_prarg *s_box)
 
 ssize_t		ft_printnegnbr(const char *s, t_prarg *s_box)
 {
-	int		ox;
+	int	ox;
 	ssize_t n;
 
 	n = 0;
@@ -74,7 +74,10 @@ char		*ft_bonusflags(char **s, t_prarg *s_box)
 	else if (s_box->bonf == '#' && s_box->conv == 'X')
 		meow = ft_strjoin("0X", *s);
 	else
-		meow = "\0";
+	{
+		meow = malloc(sizeof(char));
+		meow[0] = '\0';
+	}
 	free(*s);
 	return (meow);
 }

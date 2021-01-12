@@ -6,7 +6,7 @@
 /*   By: gmayweat <gmayweat@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/18 23:30:14 by gmayweat          #+#    #+#             */
-/*   Updated: 2021/01/11 13:43:03 by gmayweat         ###   ########.fr       */
+/*   Updated: 2021/01/12 17:52:47 by gmayweat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ ssize_t		ft_putchar(t_prarg *s_box)
 {
 	char		c;
 
-	if (!s_box->is_width)
+	if (!s_box->width)
 		s_box->width = 1;
 	if (!s_box->minus)
 		ft_printnch(s_box->width - 1, ' ', 0);
@@ -39,16 +39,16 @@ ssize_t		ft_putstr(t_prarg *s_box)
 
 	n = 0;
 	s = va_arg(s_box->args, char*);
-	if (!s)
+	if (!s && (!s_box->is_acc || s_box->acc >= 6))
 		s = "(null)\0";
-	else if (!s[0])
+	else if (!s || !s[0])
 		s = "\0";
 	if (!s_box->is_acc || s_box->acc > (ssize_t)ft_strlen(s))
 		s_box->acc = ft_strlen(s);
 	if (!s_box->minus)
-		n += ft_printnch(s_box->width - s_box->acc, ' ', 0);
+		n += ft_printnch(s_box->width - s_box->acc, ' ', &s_box->width);
 	n += write(1, s, s_box->acc);
-	if (!s_box->minus)
+	if (s_box->minus)
 		n += ft_printnch(s_box->width - s_box->acc, ' ', 0);
 	return (n);
 }
@@ -64,7 +64,7 @@ ssize_t		ft_putint(t_prarg *s_box)
 		s = ft_dextohex(va_arg(s_box->args, long int), s_box->conv);
 	if (s_box->bonf)
 		s = ft_bonusflags(&s, s_box);
-	if (s_box->bonf && s[0] != '-')
+	if (s_box->bonf || s[0] == '-')
 		n = ft_printnegnbr(s, s_box);
 	else
 		n = ft_printposnbr(s, s_box);
