@@ -6,7 +6,7 @@
 /*   By: gmayweat <gmayweat@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/17 18:43:54 by gmayweat          #+#    #+#             */
-/*   Updated: 2021/01/12 11:07:46 by gmayweat         ###   ########.fr       */
+/*   Updated: 2021/01/16 22:49:22 by gmayweat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,6 @@ void		ft_flagcheck(const char *sub, t_prarg *s_box);
 ssize_t		ft_printposnbr(const char *s, t_prarg *s_box);
 ssize_t		ft_printnegnbr(const char *s, t_prarg *s_box);
 char		*ft_bonusflags(char **s, t_prarg *s_box);
-char		*ft_dextohex(long int n, char conv);
+char		*ft_dextohex(unsigned int n, char conv);
 
 #endif

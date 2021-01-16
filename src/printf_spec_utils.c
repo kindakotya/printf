@@ -6,7 +6,7 @@
 /*   By: gmayweat <gmayweat@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/07 20:59:20 by gmayweat          #+#    #+#             */
-/*   Updated: 2021/01/12 17:44:38 by gmayweat         ###   ########.fr       */
+/*   Updated: 2021/01/17 00:02:29 by gmayweat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,12 +41,12 @@ ssize_t		ft_printnegnbr(const char *s, t_prarg *s_box)
 
 	n = 0;
 	ox = 1;
-	if (s[1] == 'x' || s[1] == 'X')
+	if ((s[1] == 'x' || s[1] == 'X'))
 		ox = 2;
 	if (!s_box->minus && s_box->acc > (ssize_t)ft_strlen(s) - ox)
 		n += ft_printnch(s_box->width - s_box->acc - ox, ' ', &s_box->width);
 	else if (((!s_box->is_acc && !s_box->zero) ||(s_box->is_acc
-	&& s_box->acc < (ssize_t)ft_strlen(s) - ox)) && !s_box->minus)
+	&& s_box->acc <= (ssize_t)ft_strlen(s) - ox)) && !s_box->minus)
 		n += ft_printnch(s_box->width - ft_strlen(s), ' ', &s_box->width);
 	n += write(1, s, ox);
 	--s_box->width;

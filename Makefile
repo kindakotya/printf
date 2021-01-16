@@ -6,7 +6,7 @@
 #    By: gmayweat <gmayweat@42.fr>                  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/12/17 18:31:55 by gmayweat          #+#    #+#              #
-#    Updated: 2021/01/08 20:27:27 by gmayweat         ###   ########.fr        #
+#    Updated: 2021/01/16 22:33:21 by gmayweat         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -40,8 +40,8 @@ $(NAME): $(LIBFT) $(OBJDIR) $(OBJS) main.c
 	cp $(LIBFT) $(NAME)
 	ar rc $(NAME) $(addprefix obj/, $(OBJS))
 	ranlib $(NAME)
-	gcc -g -Wall -Werror -Wextra main.c -o printf -L. libftprintf.a
-
+	gcc -g main.c -o printf -L. libftprintf.a
+#-Wall -Werror -Wextra
 
 %.o : %.c $(HEAD)
 	gcc -g -Wall -Wextra -Werror -o $(patsubst src/%, obj/%, $(patsubst %.c, %.o, $<)) -c $<

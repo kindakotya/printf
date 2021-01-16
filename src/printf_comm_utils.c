@@ -6,7 +6,7 @@
 /*   By: gmayweat <gmayweat@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/21 21:39:29 by gmayweat          #+#    #+#             */
-/*   Updated: 2021/01/12 18:16:32 by gmayweat         ###   ########.fr       */
+/*   Updated: 2021/01/16 20:53:26 by gmayweat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,10 +44,10 @@ void		ft_flagcheck(const char *sub, t_prarg *s_box)
 		else
 			s_box->acc = ft_atoi(ft_strchr(sub, '.') + 1);
 	}
-	while ((sub[i - 1] < '1' || sub[i - 1] > '9') && sub[i])
+	while ((!i || sub[i - 1] < '1' || sub[i - 1] > '9') && sub[i])
 	{
-		if ((sub[i] >= '1' || sub[i] <= '9') && sub[i - 1] != '.')
-			s_box->width = ft_atoi(&(sub[i]));
+		if ((sub[i] >= '1' && sub[i] <= '9') && (!ft_strchr(sub, '.') || ft_strchr(sub, '.') > sub + i))
+			s_box->width = ft_atoi(sub + i);
 		++i;
 	}
 }

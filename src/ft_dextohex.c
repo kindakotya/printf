@@ -6,22 +6,17 @@
 /*   By: gmayweat <gmayweat@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/25 11:05:02 by gmayweat          #+#    #+#             */
-/*   Updated: 2021/01/10 19:13:15 by gmayweat         ###   ########.fr       */
+/*   Updated: 2021/01/16 22:49:11 by gmayweat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../libftprintf.h"
 
-static size_t	ft_hexlen(long int n)
+static size_t	ft_hexlen(unsigned int n)
 {
 	size_t nrazr;
 
 	nrazr = 1;
-	if (n < 0)
-	{
-		n = -n;
-		++nrazr;
-	}
 	while (n / 16)
 	{
 		++nrazr;
@@ -40,7 +35,7 @@ static char		ft_puthex(unsigned int n, char conv)
 		return (n - 10 + 'A');
 }
 
-char			*ft_dextohex(long int n, char conv)
+char			*ft_dextohex(unsigned int n, char conv)
 {
 	size_t	nrazr;
 	char	*hex;
@@ -49,11 +44,6 @@ char			*ft_dextohex(long int n, char conv)
 	hex = malloc((nrazr + 1) * sizeof(char));
 	if (!hex)
 		return (NULL);
-	if (n < 0)
-	{
-		hex[0] = '-';
-		n = -n;
-	}
 	hex[0] = '0';
 	hex[nrazr] = '\0';
 	while (n)
