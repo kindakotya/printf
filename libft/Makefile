@@ -6,7 +6,7 @@
 #    By: gmayweat <gmayweat@42.fr>                  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/11/03 09:56:58 by gmayweat          #+#    #+#              #
-#    Updated: 2021/01/08 20:27:16 by gmayweat         ###   ########.fr        #
+#    Updated: 2021/01/17 18:48:44 by gmayweat         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -65,7 +65,7 @@ $(NAME): $(OBJDIR) $(OBJS)
 	ranlib $(NAME)
 
 %.o: %.c libft.h
-	gcc -g -Wall -Wextra -Werror -o $(patsubst src/%, obj/%, $(patsubst %.c, %.o, $<)) -c $<
+	gcc -Wall -Wextra -Werror -o $(patsubst src/%, obj/%, $(patsubst %.c, %.o, $<)) -c $<
 
 $(OBJDIR):
 	mkdir $(OBJDIR)

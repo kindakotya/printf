@@ -6,7 +6,7 @@
 /*   By: gmayweat <gmayweat@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/17 18:31:14 by gmayweat          #+#    #+#             */
-/*   Updated: 2021/01/16 23:48:55 by gmayweat         ###   ########.fr       */
+/*   Updated: 2021/01/17 18:50:42 by gmayweat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ static void		ft_fillbox(const char *s, size_t start, size_t len,
 	ft_flagcheck(sub, s_box);
 }
 
-static void	ft_sclean(t_prarg *s_box)
+static void		ft_sclean(t_prarg *s_box)
 {
 	s_box->is_acc = 0;
 	s_box->width = 0;
@@ -105,7 +105,7 @@ int				ft_printf(const char *s, ...)
 	{
 		ft_sclean(&s_box);
 		while (s[i] != '%' && s[i] && i < ft_strlen(s))
-			n += write(1, &(s[i++]), 1);
+			n += write(1, s + i++, 1);
 		++i;
 		if (s[i] && i <= ft_strlen(s))
 			n += ft_symb(s, &i, &s_box);

@@ -6,7 +6,7 @@
 /*   By: gmayweat <gmayweat@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/07 20:59:20 by gmayweat          #+#    #+#             */
-/*   Updated: 2021/01/17 00:02:29 by gmayweat         ###   ########.fr       */
+/*   Updated: 2021/01/17 18:49:48 by gmayweat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ ssize_t		ft_printposnbr(const char *s, t_prarg *s_box)
 
 ssize_t		ft_printnegnbr(const char *s, t_prarg *s_box)
 {
-	int	ox;
+	int		ox;
 	ssize_t n;
 
 	n = 0;
@@ -45,7 +45,7 @@ ssize_t		ft_printnegnbr(const char *s, t_prarg *s_box)
 		ox = 2;
 	if (!s_box->minus && s_box->acc > (ssize_t)ft_strlen(s) - ox)
 		n += ft_printnch(s_box->width - s_box->acc - ox, ' ', &s_box->width);
-	else if (((!s_box->is_acc && !s_box->zero) ||(s_box->is_acc
+	else if (((!s_box->is_acc && !s_box->zero) || (s_box->is_acc
 	&& s_box->acc <= (ssize_t)ft_strlen(s) - ox)) && !s_box->minus)
 		n += ft_printnch(s_box->width - ft_strlen(s), ' ', &s_box->width);
 	n += write(1, s, ox);

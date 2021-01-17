@@ -6,7 +6,7 @@
 /*   By: gmayweat <gmayweat@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/18 23:30:14 by gmayweat          #+#    #+#             */
-/*   Updated: 2021/01/16 23:54:04 by gmayweat         ###   ########.fr       */
+/*   Updated: 2021/01/17 18:13:06 by gmayweat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,9 @@
 ssize_t		ft_putchar(t_prarg *s_box)
 {
 	char		c;
+	ssize_t		n;
 
+	n = 0;
 	if (!s_box->width)
 		s_box->width = 1;
 	if (s_box->conv == 'c')
@@ -23,13 +25,13 @@ ssize_t		ft_putchar(t_prarg *s_box)
 	else
 		c = '%';
 	if (c == '%' && s_box->zero)
-		ft_printnch(s_box->width - 1, '0', &s_box->width);
+		n += ft_printnch(s_box->width - 1, '0', &s_box->width);
 	if (!s_box->minus)
-		ft_printnch(s_box->width - 1, ' ', &s_box->width);
-	write(1, &c, 1);
+		n += ft_printnch(s_box->width - 1, ' ', &s_box->width);
+	n += write(1, &c, 1);
 	if (s_box->minus)
-		ft_printnch(s_box->width - 1, ' ', 0);
-	return (s_box->width);
+		n += ft_printnch(s_box->width - 1, ' ', 0);
+	return (n);
 }
 
 ssize_t		ft_putstr(t_prarg *s_box)
@@ -95,14 +97,18 @@ ssize_t		ft_putpoint(t_prarg *s_box)
 
 	n = 0;
 	s = ft_dextohex(va_arg(s_box->args, unsigned long int), 'x');
-	if (s[0] == 0)
-		return (write(1, "0x0", 3));
+	if (s_box->is_acc && !s_box->acc && s[0] == '0')
+	{
+		free(s);
+		s = ft_calloc(1, sizeof(char));
+	}
 	if (!s_box->minus)
-		n += ft_printnch(s_box->width - ft_strlen(s) - 2, ' ', 0);
+		n += ft_printnch(s_box->width - ft_strlen(s) - 2, ' ', &s_box->width);
 	n += write(1, "0x", 2);
+	s_box->width -= 2 + ft_strlen(s);
 	n += write(1, s, ft_strlen(s));
 	if (s_box->minus)
-		n += ft_printnch(s_box->width - ft_strlen(s) - 2, ' ', 0);
+		n += ft_printnch(s_box->width, ' ', &s_box->width);
 	free(s);
 	return (n);
 }

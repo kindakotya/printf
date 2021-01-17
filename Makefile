@@ -6,7 +6,7 @@
 #    By: gmayweat <gmayweat@42.fr>                  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/12/17 18:31:55 by gmayweat          #+#    #+#              #
-#    Updated: 2021/01/16 22:33:21 by gmayweat         ###   ########.fr        #
+#    Updated: 2021/01/17 18:48:29 by gmayweat         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -29,22 +29,20 @@ OBJDIR = obj
 vpath %.o obj
 vpath %.c src
 
-.Phony: all $(NAME) clean fclean re libft.a
+.Phony: all $(NAME) clean fclean re libft.a $(OBJDIR)
 
 all: libft.a $(NAME)
 
 libft.a:
 	$(MAKE) -C libft
 
-$(NAME): $(LIBFT) $(OBJDIR) $(OBJS) main.c
+$(NAME): $(LIBFT) $(OBJDIR) $(OBJS)
 	cp $(LIBFT) $(NAME)
 	ar rc $(NAME) $(addprefix obj/, $(OBJS))
 	ranlib $(NAME)
-	gcc -g main.c -o printf -L. libftprintf.a
-#-Wall -Werror -Wextra
 
 %.o : %.c $(HEAD)
-	gcc -g -Wall -Wextra -Werror -o $(patsubst src/%, obj/%, $(patsubst %.c, %.o, $<)) -c $<
+	gcc -Wall -Wextra -Werror -o $(patsubst src/%, obj/%, $(patsubst %.c, %.o, $<)) -c $<
 
 $(OBJDIR):
 	mkdir $(OBJDIR)
@@ -55,6 +53,6 @@ clean:
 
 fclean:
 	$(MAKE) -C libft fclean
-	rm -rf $(OBJDIR) $(NAME) printf
+	rm -rf $(OBJDIR) $(NAME)
 
 re: fclean all

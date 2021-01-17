@@ -6,13 +6,13 @@
 /*   By: gmayweat <gmayweat@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/25 11:05:02 by gmayweat          #+#    #+#             */
-/*   Updated: 2021/01/16 22:49:11 by gmayweat         ###   ########.fr       */
+/*   Updated: 2021/01/17 17:36:10 by gmayweat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../libftprintf.h"
 
-static size_t	ft_hexlen(unsigned int n)
+static size_t	ft_hexlen(unsigned long int n)
 {
 	size_t nrazr;
 
@@ -25,7 +25,7 @@ static size_t	ft_hexlen(unsigned int n)
 	return (nrazr);
 }
 
-static char		ft_puthex(unsigned int n, char conv)
+static char		ft_puthex(unsigned long int n, char conv)
 {
 	if (n < 10)
 		return (n + '0');
@@ -35,7 +35,7 @@ static char		ft_puthex(unsigned int n, char conv)
 		return (n - 10 + 'A');
 }
 
-char			*ft_dextohex(unsigned int n, char conv)
+char			*ft_dextohex(unsigned long int n, char conv)
 {
 	size_t	nrazr;
 	char	*hex;
