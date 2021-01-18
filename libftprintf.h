@@ -6,7 +6,7 @@
 /*   By: gmayweat <gmayweat@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/17 18:43:54 by gmayweat          #+#    #+#             */
-/*   Updated: 2021/01/17 18:52:23 by gmayweat         ###   ########.fr       */
+/*   Updated: 2021/01/18 13:53:29 by gmayweat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 # define LIBFTPRINTF_H
 
-# include "libft/libft.h"
+# include "libft.h"
 # include <unistd.h>
 # include <stdarg.h>
 

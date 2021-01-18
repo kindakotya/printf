@@ -6,11 +6,11 @@
 /*   By: gmayweat <gmayweat@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/07 20:59:20 by gmayweat          #+#    #+#             */
-/*   Updated: 2021/01/17 18:49:48 by gmayweat         ###   ########.fr       */
+/*   Updated: 2021/01/18 13:54:09 by gmayweat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../libftprintf.h"
+#include "libftprintf.h"
 
 ssize_t		ft_printposnbr(const char *s, t_prarg *s_box)
 {
@@ -49,7 +49,7 @@ ssize_t		ft_printnegnbr(const char *s, t_prarg *s_box)
 	&& s_box->acc <= (ssize_t)ft_strlen(s) - ox)) && !s_box->minus)
 		n += ft_printnch(s_box->width - ft_strlen(s), ' ', &s_box->width);
 	n += write(1, s, ox);
-	--s_box->width;
+	s_box->width -= ox;
 	if (s_box->zero && !s_box->is_acc)
 		n += ft_printnch(s_box->width - ft_strlen(s) + ox, '0', &s_box->width);
 	else

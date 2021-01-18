@@ -6,11 +6,11 @@
 /*   By: gmayweat <gmayweat@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/21 21:39:29 by gmayweat          #+#    #+#             */
-/*   Updated: 2021/01/17 18:41:50 by gmayweat         ###   ########.fr       */
+/*   Updated: 2021/01/18 13:48:11 by gmayweat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../libftprintf.h"
+#include "libftprintf.h"
 
 ssize_t		ft_printnch(size_t n, char c, ssize_t *width)
 {

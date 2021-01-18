@@ -6,11 +6,11 @@
 /*   By: gmayweat <gmayweat@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/06 10:31:34 by gmayweat          #+#    #+#             */
-/*   Updated: 2020/12/29 14:42:42 by gmayweat         ###   ########.fr       */
+/*   Updated: 2021/01/18 13:52:18 by gmayweat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../libft.h"
+#include "libft.h"
 
 int		ft_memcmp(const void *s1, const void *s2, size_t n)
 {

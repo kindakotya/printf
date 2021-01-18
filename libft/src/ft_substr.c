@@ -6,11 +6,11 @@
 /*   By: gmayweat <gmayweat@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/09 09:36:44 by gmayweat          #+#    #+#             */
-/*   Updated: 2020/12/29 14:42:42 by gmayweat         ###   ########.fr       */
+/*   Updated: 2021/01/18 13:52:18 by gmayweat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../libft.h"
+#include "libft.h"
 
 char	*ft_substr(const char *s, unsigned int start, size_t len)
 {

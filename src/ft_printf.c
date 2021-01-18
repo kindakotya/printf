@@ -6,11 +6,11 @@
 /*   By: gmayweat <gmayweat@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/17 18:31:14 by gmayweat          #+#    #+#             */
-/*   Updated: 2021/01/17 18:50:42 by gmayweat         ###   ########.fr       */
+/*   Updated: 2021/01/18 13:48:11 by gmayweat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../libftprintf.h"
+#include "libftprintf.h"
 
 static void		ft_fillbox(const char *s, size_t start, size_t len,
 	t_prarg *s_box)

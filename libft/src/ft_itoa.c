@@ -6,11 +6,11 @@
 /*   By: gmayweat <gmayweat@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/11 22:15:37 by gmayweat          #+#    #+#             */
-/*   Updated: 2020/12/29 14:43:25 by gmayweat         ###   ########.fr       */
+/*   Updated: 2021/01/18 13:52:18 by gmayweat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../libft.h"
+#include "libft.h"
 
 static int	ft_numlen(long int n)
 {

@@ -6,11 +6,11 @@
 /*   By: gmayweat <gmayweat@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/09 10:36:27 by gmayweat          #+#    #+#             */
-/*   Updated: 2020/12/29 14:42:42 by gmayweat         ###   ########.fr       */
+/*   Updated: 2021/01/18 13:52:18 by gmayweat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../libft.h"
+#include "libft.h"
 
 char	*ft_strjoin(const char *s1, const char *s2)
 {

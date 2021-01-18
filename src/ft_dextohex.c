@@ -6,11 +6,11 @@
 /*   By: gmayweat <gmayweat@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/25 11:05:02 by gmayweat          #+#    #+#             */
-/*   Updated: 2021/01/17 17:36:10 by gmayweat         ###   ########.fr       */
+/*   Updated: 2021/01/18 13:48:11 by gmayweat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../libftprintf.h"
+#include "libftprintf.h"
 
 static size_t	ft_hexlen(unsigned long int n)
 {
