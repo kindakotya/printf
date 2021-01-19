@@ -6,7 +6,7 @@
 /*   By: gmayweat <gmayweat@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/18 23:30:14 by gmayweat          #+#    #+#             */
-/*   Updated: 2021/01/18 13:48:11 by gmayweat         ###   ########.fr       */
+/*   Updated: 2021/01/18 19:34:21 by gmayweat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ ssize_t		ft_putstr(t_prarg *s_box)
 	s = va_arg(s_box->args, char*);
 	if (!s)
 		s = "(null)\0";
-	else if (!s || !s[0])
+	else if (!s[0])
 		s = "\0";
 	if (!s_box->is_acc || s_box->acc > (ssize_t)ft_strlen(s))
 		s_box->acc = ft_strlen(s);

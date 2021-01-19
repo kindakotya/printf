@@ -6,7 +6,7 @@
 /*   By: gmayweat <gmayweat@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/17 18:31:14 by gmayweat          #+#    #+#             */
-/*   Updated: 2021/01/18 13:48:11 by gmayweat         ###   ########.fr       */
+/*   Updated: 2021/01/18 20:00:13 by gmayweat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,13 +101,13 @@ int				ft_printf(const char *s, ...)
 	va_start(s_box.args, s);
 	i = 0;
 	n = 0;
-	while (s[i] && i <= ft_strlen(s))
+	while (i <= ft_strlen(s))
 	{
 		ft_sclean(&s_box);
-		while (s[i] != '%' && s[i] && i < ft_strlen(s))
+		while (s[i] != '%' && i < ft_strlen(s))
 			n += write(1, s + i++, 1);
 		++i;
-		if (s[i] && i <= ft_strlen(s))
+		if (i <= ft_strlen(s))
 			n += ft_symb(s, &i, &s_box);
 		++i;
 	}
